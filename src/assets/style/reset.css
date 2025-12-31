@@ -20,7 +20,8 @@ a {
   --container-main-bgc: #eceff4;
 }
 
-:root.dark {
+html.dark,
+.dark {
   --container-main-bgc: #16191d;
 }
 

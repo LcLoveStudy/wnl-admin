@@ -10,7 +10,7 @@
     </div>
     <!-- 文字提示 -->
     <div class="flex items-center gap-4 tablet:mt-8 phone:mt-[4vh] select-none">
-      <h1 class="tablet:text-5xl phone:text-[24px]">欢迎回来</h1>
+      <h1 class="tablet:text-5xl phone:text-[24px] font-bold">欢迎回来</h1>
       <img class="tablet:w-16 phone:w-[36px]" :src="DogIcon" />
     </div>
     <div class="mt-6 tablet:text-xl phone:text-[14px] dark:text-slate-200 select-none">

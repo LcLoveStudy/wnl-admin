@@ -19,9 +19,15 @@
     "format": "prettier --write --experimental-cli src/"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.2",
+    "@lichang666/utils": "^0.0.14",
     "@tailwindcss/vite": "^4.1.18",
+    "element-plus": "^2.13.0",
+    "less": "^4.5.1",
+    "nprogress": "^0.2.0",
     "pinia": "^3.0.4",
     "tailwindcss": "^4.1.18",
+    "unplugin-auto-import": "^20.3.0",
     "vue": "^3.5.25",
     "vue-router": "^4.6.3"
   },
@@ -30,6 +36,7 @@
     "@tsconfig/node24": "^24.0.3",
     "@types/jsdom": "^27.0.0",
     "@types/node": "^24.10.1",
+    "@types/nprogress": "^0.2.3",
     "@vitejs/plugin-vue": "^6.0.2",
     "@vitest/eslint-plugin": "^1.5.0",
     "@vue/eslint-config-prettier": "^10.2.0",

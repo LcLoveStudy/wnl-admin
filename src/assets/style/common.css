@@ -1,5 +1,37 @@
 @import 'tailwindcss';
 
+@theme {
+  --breakpoint-phone: 320px;
+  --breakpoint-tablet: 640px;
+  --breakpoint-desktop: 1280px;
+  --color-dark-parimay: #1d2025;
+  --backgroundImage-img-dark: radial-gradient(
+    circle at center,
+    black 0%,
+    black 25%,
+    #1e2a47 50%,
+    black 75%,
+    black 100%
+  );
+  --backgroundImage-img-light: radial-gradient(
+    circle at center,
+    #f8fafc 0%,
+    #f8fafc 25%,
+    #dbeafe 50%,
+    #f8fafc 75%,
+    #f8fafc 100%
+  );
+}
+
+@layer utilities {
+  .bg-img-light {
+    background-image: var(--backgroundImage-img-light);
+  }
+  .bg-img-dark {
+    background-image: var(--backgroundImage-img-dark);
+  }
+}
+
 body,
 html,
 #app {

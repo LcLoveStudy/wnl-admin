@@ -1,5 +1,7 @@
 <template>
-  <div class="flex items-center cursor-pointer theme-btn">
+  <div
+    class="tablet:w-8 tablet:h-3 phone:w-16 phone:h-8 flex items-center justify-center cursor-pointer theme-btn"
+  >
     <component :is="iconComponent" @click="checkoutTheme" />
   </div>
 </template>

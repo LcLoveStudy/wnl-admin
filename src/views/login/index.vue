@@ -24,25 +24,6 @@ const { theme } = storeToRefs(useCustomStore())
 </script>
 
 <style lang="less" scoped>
-.primary_box {
-  @keyframes riseAndFall {
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-  .primary_img {
-    animation: riseAndFall 2s infinite;
-  }
-}
-</style>
-
-<style lang="less" scoped>
 .bg-img-light {
   background-image: radial-gradient(
     circle at center,
@@ -63,5 +44,21 @@ const { theme } = storeToRefs(useCustomStore())
     black 75%,
     black 100%
   );
+}
+.primary_box {
+  @keyframes riseAndFall {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  .primary_img {
+    animation: riseAndFall 2s infinite;
+  }
 }
 </style>

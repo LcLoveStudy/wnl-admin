@@ -13,10 +13,11 @@
     "test:unit": "vitest",
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
+    "prepare": "husky install",
     "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
     "lint:eslint": "eslint . --fix --cache",
-    "lint": "run-s lint:*",
-    "format": "prettier --write --experimental-cli src/"
+    "lint": "eslint . --ext .vue,.js,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "format": "prettier --write src/"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",
@@ -46,8 +47,10 @@
     "eslint": "^9.39.1",
     "eslint-plugin-oxlint": "~1.29.0",
     "eslint-plugin-vue": "~10.5.1",
+    "husky": "^9.1.7",
     "jiti": "^2.6.1",
     "jsdom": "^27.2.0",
+    "lint-staged": "^16.2.7",
     "npm-run-all2": "^8.0.4",
     "oxlint": "~1.29.0",
     "prettier": "3.6.2",
@@ -56,5 +59,9 @@
     "vite-plugin-vue-devtools": "^8.0.5",
     "vitest": "^4.0.14",
     "vue-tsc": "^3.1.5"
+  },
+  "lint-staged": {
+    "*.{vue,js,cjs,mjs,ts,tsx,cts,mts}": "eslint --cache --fix",
+    "*.{vue,ts}": "prettier --write"
   }
 }

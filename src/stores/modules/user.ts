@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import { useLocalStorage } from '@/hooks'
 import { getRandomString } from '@lichang666/utils'
 import type { UserInfo } from '@/types/user'
+import { ElMessage } from 'element-plus'
 
 interface LoginRequestData {
   username: string
@@ -24,8 +25,13 @@ export const useUserStore = defineStore('user', () => {
   }
   /** 退出登录操作 */
   const logout = async () => {
+    ElMessage.success('退出登录成功')
     localStorage.clear()
     userinfo.value = null
+    token.value = null
+    setTimeout(() => {
+      window.location.reload()
+    }, 1000)
   }
   return { userinfo, token, login, logout }
 })

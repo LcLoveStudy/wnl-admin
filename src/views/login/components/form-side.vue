@@ -3,7 +3,7 @@
     <!-- 主题切换按钮 -->
     <div class="tablet:float-none phone:float-right flex items-center justify-end">
       <div
-        class="phone:px-[16px] phone:py-[8px] tablet:mt-0 phone:mt-[4vh] tablet:px-8 tablet:py-4 rounded-full flex items-center bg-slate-100 dark:bg-dark-primary"
+        class="phone:px-[16px] phone:py-[8px] tablet:mt-0 phone:mt-[4vh] tablet:px-8 tablet:py-3 rounded-full flex items-center bg-slate-100 dark:bg-gray-700"
       >
         <theme-checkout />
       </div>

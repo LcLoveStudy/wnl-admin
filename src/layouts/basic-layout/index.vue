@@ -22,11 +22,13 @@ import AppContent from './components/app-content.vue'
 import { useCustomStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import { LAYOUT_CONSTANTS } from '@/enums/const-enums'
-const { menuStyle } = storeToRefs(useCustomStore())
+const { layoutConfig } = storeToRefs(useCustomStore())
 /** 计算整体布局样式 */
 const BasicLayoutStyle = computed(() => ({
   gridTemplateColumns:
-    menuStyle.value && menuStyle.value.width ? `${menuStyle.value.width}px 1fr` : '0 1fr',
+    layoutConfig.value && layoutConfig.value.sidebar.width
+      ? `${layoutConfig.value.sidebar.width}px 1fr`
+      : '0 1fr',
   transitionDuration: `${LAYOUT_CONSTANTS.LAYOUT_ANIMATION_DURATION}ms`,
 }))
 </script>

@@ -10,7 +10,7 @@ import type { LocalStorageKeys } from '@/enums/localstorage'
  */
 export const useLocalStorage = <T>(key: LocalStorageKeys, defaultValue?: T): Ref<T | undefined> => {
   const storageItem = ref<T>()
-  const initValue = localStorage.getItem(key + ConstEnums.PROJECT_NAME)
+  const initValue = localStorage.getItem(key + '-' + ConstEnums.PROJECT_NAME)
   if (initValue === null && defaultValue) {
     storageItem.value = defaultValue
   } else if (initValue) {
@@ -20,15 +20,15 @@ export const useLocalStorage = <T>(key: LocalStorageKeys, defaultValue?: T): Ref
     () => storageItem.value,
     (newValue) => {
       if (newValue === null || newValue === undefined) {
-        localStorage.removeItem(key + ConstEnums.PROJECT_NAME)
+        localStorage.removeItem(key + '-' + ConstEnums.PROJECT_NAME)
       } else {
-        localStorage.setItem(key + ConstEnums.PROJECT_NAME, JSON.stringify(newValue))
+        localStorage.setItem(key + '-' + ConstEnums.PROJECT_NAME, JSON.stringify(newValue))
       }
     },
     {
       immediate: true,
-      deep: true
-    }
+      deep: true,
+    },
   )
   return storageItem
 }

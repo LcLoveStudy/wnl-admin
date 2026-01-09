@@ -1,8 +1,8 @@
 <template>
   <header class="h-[50px] border-b border-layout-border flex items-center justify-between px-8">
     <div class="flex items-center">
-      <!-- 折叠按钮 -->
-      <app-collapse-button
+      <!-- 侧边栏切换按钮 -->
+      <app-sidebar-toggle-button
         container-class="w-9 h-9 hover:bg-primary-hover transition-colors rounded"
       />
     </div>
@@ -20,5 +20,5 @@
 <script setup lang="ts">
 import ThemeSwitcher from '@/components/theme-switcher/index.vue'
 import AppUserMenu from '@/layouts/basic-layout/components/app-user-menu.vue'
-import AppCollapseButton from '@/components/app-collapse-button/index.vue'
+import AppSidebarToggleButton from '@/components/app-sidebar-toggle-button/index.vue'
 </script>

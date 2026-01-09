@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-center cursor-pointer theme-btn" :class="containerClass">
-    <el-icon @click="toggleMenuVisible" :size="size" :color="colorComputed">
+    <el-icon @click="toggleSidebarVisible" :size="size" :color="colorComputed">
       <component :is="iconComponent" />
     </el-icon>
   </div>
@@ -10,10 +10,10 @@
 import { useCustomStore } from '@/stores'
 import { Expand, Fold } from '@element-plus/icons-vue'
 import { storeToRefs } from 'pinia'
-const { menuStyle, theme } = storeToRefs(useCustomStore())
-const { toggleMenuVisible } = useCustomStore()
+const { layoutConfig, theme } = storeToRefs(useCustomStore())
+const { toggleSidebarVisible } = useCustomStore()
 const iconComponent = computed(() => {
-  return menuStyle.value?.visible ? Fold : Expand
+  return layoutConfig.value?.sidebar.visible ? Fold : Expand
 })
 
 const colorComputed = computed(() => {

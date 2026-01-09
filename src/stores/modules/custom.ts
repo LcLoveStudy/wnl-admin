@@ -2,33 +2,55 @@ import { LocalStorageKeys } from '@/enums/localstorage'
 import { defineStore } from 'pinia'
 import { useLocalStorage } from '@/hooks'
 
+/** 侧边栏配置 */
+interface SidebarConfig {
+  /** 侧边栏是否可见 */
+  visible: boolean
+  /** 侧边栏是否折叠 */
+  collapsed: boolean
+  /** 侧边栏宽度(展开时) */
+  width: number
+  /** 侧边栏宽度(折叠时) */
+  collapsedWidth: number
+  /** 是否固定侧边栏 */
+  fixed: boolean
+}
+
 /** 菜单样式配置 */
 interface MenuStyleConfig {
-  /** 菜单是否可见 */
-  visible: boolean
-  /** 菜单是否折叠 */
-  collapsed: boolean
   /** 菜单位置 */
   position: 'sidebar' | 'header' | 'top'
-  /** 菜单宽度(展开时) */
-  width: number
-  /** 菜单宽度(折叠时) */
-  collapsedWidth: number
-  /** 是否固定菜单 */
-  fixed: boolean
+  /** 菜单模式 */
+  mode: 'inline' | 'horizontal' | 'vertical'
+  /** 菜单主题 */
+  theme: 'light' | 'dark'
+}
+
+/** 布局配置 */
+interface LayoutConfig {
+  /** 侧边栏配置 */
+  sidebar: SidebarConfig
+  /** 菜单配置 */
+  menu: MenuStyleConfig
 }
 
 export const useCustomStore = defineStore('custom', () => {
   const theme = useLocalStorage<'dark' | 'light'>(LocalStorageKeys.THEME, 'light') // 主题色
 
-  /** 菜单样式配置 */
-  const menuStyle = useLocalStorage<MenuStyleConfig>(LocalStorageKeys.MENU_STYLE, {
-    visible: true, // 菜单默认可见
-    collapsed: false, // 菜单默认展开
-    position: 'sidebar', // 默认在侧边栏
-    width: 225, // 展开时宽度225px
-    collapsedWidth: 64, // 折叠时宽度64px
-    fixed: true, // 默认固定菜单
+  /** 布局配置 */
+  const layoutConfig = useLocalStorage<LayoutConfig>(LocalStorageKeys.MENU_STYLE, {
+    sidebar: {
+      visible: true, // 侧边栏默认可见
+      collapsed: false, // 侧边栏默认展开
+      width: 225, // 展开时宽度225px
+      collapsedWidth: 64, // 折叠时宽度64px
+      fixed: true, // 默认固定侧边栏
+    },
+    menu: {
+      position: 'sidebar', // 默认在侧边栏
+      mode: 'inline', // 默认内联模式
+      theme: 'dark', // 默认深色主题
+    },
   })
   /** 切换默认主题 */
   const toggleTheme = () => {
@@ -74,44 +96,48 @@ export const useCustomStore = defineStore('custom', () => {
     }
   })
 
-  /** 菜单样式相关方法 */
-  /** 切换菜单可见性 */
-  const toggleMenuVisible = () => {
-    if (menuStyle.value) {
-      menuStyle.value.visible = !menuStyle.value.visible
-      // 当菜单隐藏时，设置很小的宽度用于动画；当显示时，根据折叠状态设置宽度
-      if (!menuStyle.value.visible) {
-        menuStyle.value.width = 0 // 设置很小的宽度用于动画过渡
+  /** 布局相关方法 */
+  /** 切换侧边栏可见性 */
+  const toggleSidebarVisible = () => {
+    if (layoutConfig.value) {
+      layoutConfig.value.sidebar.visible = !layoutConfig.value.sidebar.visible
+      // 当侧边栏隐藏时，设置很小的宽度用于动画；当显示时，根据折叠状态设置宽度
+      if (!layoutConfig.value.sidebar.visible) {
+        layoutConfig.value.sidebar.width = 0 // 设置很小的宽度用于动画过渡
       } else {
-        menuStyle.value.width = menuStyle.value.collapsed ? 64 : 225
+        layoutConfig.value.sidebar.width = layoutConfig.value.sidebar.collapsed
+          ? layoutConfig.value.sidebar.collapsedWidth
+          : 225
       }
     }
   }
 
-  /** 切换菜单折叠状态 */
-  const toggleMenuCollapsed = () => {
-    if (menuStyle.value) {
-      menuStyle.value.collapsed = !menuStyle.value.collapsed
+  /** 切换侧边栏折叠状态 */
+  const toggleSidebarCollapsed = () => {
+    if (layoutConfig.value) {
+      layoutConfig.value.sidebar.collapsed = !layoutConfig.value.sidebar.collapsed
       // 根据折叠状态设置宽度
-      if (menuStyle.value.visible) {
-        menuStyle.value.width = menuStyle.value.collapsed ? 64 : 225
+      if (layoutConfig.value.sidebar.visible) {
+        layoutConfig.value.sidebar.width = layoutConfig.value.sidebar.collapsed
+          ? layoutConfig.value.sidebar.collapsedWidth
+          : 225
       }
     }
   }
 
   /** 设置菜单位置 */
   const setMenuPosition = (position: MenuStyleConfig['position']) => {
-    if (menuStyle.value) {
-      menuStyle.value.position = position
+    if (layoutConfig.value) {
+      layoutConfig.value.menu.position = position
     }
   }
 
   return {
     theme,
     toggleTheme,
-    menuStyle,
-    toggleMenuVisible,
-    toggleMenuCollapsed,
+    layoutConfig,
+    toggleSidebarVisible,
+    toggleSidebarCollapsed,
     setMenuPosition,
   }
 })

@@ -14,12 +14,12 @@ import { LAYOUT_CONSTANTS } from '@/enums/const-enums'
 import AppLogo from '@/components/app-logo/index.vue'
 import { useCustomStore } from '@/stores'
 import { storeToRefs } from 'pinia'
-const { menuStyle } = storeToRefs(useCustomStore())
+const { layoutConfig } = storeToRefs(useCustomStore())
 /** 侧边栏样式 */
 const AppSidebarStyle = computed(() => ({
-  width: `${menuStyle.value?.width}px`,
-  opacity: menuStyle.value?.visible ? 1 : 0,
-  pointerEvents: (menuStyle.value?.visible ? 'auto' : 'none') as 'auto' | 'none',
+  width: `${layoutConfig.value?.sidebar.width}px`,
+  opacity: layoutConfig.value?.sidebar.visible ? 1 : 0,
+  pointerEvents: (layoutConfig.value?.sidebar.visible ? 'auto' : 'none') as 'auto' | 'none',
   transitionDuration: `${LAYOUT_CONSTANTS.LAYOUT_ANIMATION_DURATION}ms`,
 }))
 </script>

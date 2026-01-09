@@ -2,5 +2,6 @@
 export enum LocalStorageKeys {
   USERINFO = 'userinfo',
   TOKEN = 'token',
-  THEME = 'theme'
+  THEME = 'theme',
+  MENU_STYLE = 'menu_style'
 }

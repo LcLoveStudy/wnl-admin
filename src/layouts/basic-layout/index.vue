@@ -13,11 +13,15 @@
 </template>
 
 <script setup lang="ts">
-import { LAYOUT_CONSTANTS } from '@/enums/const-enums'
 import AppHeader from './components/app-header.vue'
 import AppSidebar from './components/app-sidebar.vue'
 import AppContent from './components/app-content.vue'
+import { useCustomStore } from '@/stores'
+import { storeToRefs } from 'pinia'
+const { menuStyle } = storeToRefs(useCustomStore())
+/** 计算整体布局样式 */
 const BasicLayoutStyle = computed(() => ({
-  gridTemplateColumns: `${LAYOUT_CONSTANTS.SIDEBAR_WIDTH}px 1fr`,
+  gridTemplateColumns:
+    menuStyle.value && menuStyle.value.width ? `${menuStyle.value.width}px 1fr` : '1fr',
 }))
 </script>

@@ -1,11 +1,35 @@
-import { ref } from 'vue'
 import { LocalStorageKeys } from '@/enums/localstorage'
 import { defineStore } from 'pinia'
 import { useLocalStorage } from '@/hooks'
 
+/** 菜单样式配置 */
+interface MenuStyleConfig {
+  /** 菜单是否可见 */
+  visible: boolean
+  /** 菜单是否折叠 */
+  collapsed: boolean
+  /** 菜单位置 */
+  position: 'sidebar' | 'header' | 'top'
+  /** 菜单宽度(展开时) */
+  width: number
+  /** 菜单宽度(折叠时) */
+  collapsedWidth: number
+  /** 是否固定菜单 */
+  fixed: boolean
+}
+
 export const useCustomStore = defineStore('custom', () => {
-  const asideMenuFold = ref(false)
   const theme = useLocalStorage<'dark' | 'light'>(LocalStorageKeys.THEME, 'light') // 主题色
+
+  /** 菜单样式配置 */
+  const menuStyle = useLocalStorage<MenuStyleConfig>(LocalStorageKeys.MENU_STYLE, {
+    visible: true, // 菜单默认可见
+    collapsed: false, // 菜单默认展开
+    position: 'sidebar', // 默认在侧边栏
+    width: 225, // 展开时宽度225px
+    collapsedWidth: 64, // 折叠时宽度64px
+    fixed: true, // 默认固定菜单
+  })
   /** 切换默认主题 */
   const toggleTheme = () => {
     const transition = document.startViewTransition(() => {
@@ -50,5 +74,44 @@ export const useCustomStore = defineStore('custom', () => {
     }
   })
 
-  return { asideMenuFold, theme, toggleTheme }
+  /** 菜单样式相关方法 */
+  /** 切换菜单可见性 */
+  const toggleMenuVisible = () => {
+    if (menuStyle.value) {
+      menuStyle.value.visible = !menuStyle.value.visible
+      // 当菜单隐藏时，宽度保持为0；当显示时，根据折叠状态设置宽度
+      if (!menuStyle.value.visible) {
+        menuStyle.value.width = 0
+      } else {
+        menuStyle.value.width = menuStyle.value.collapsed ? 64 : 225
+      }
+    }
+  }
+
+  /** 切换菜单折叠状态 */
+  const toggleMenuCollapsed = () => {
+    if (menuStyle.value) {
+      menuStyle.value.collapsed = !menuStyle.value.collapsed
+      // 根据折叠状态设置宽度
+      if (menuStyle.value.visible) {
+        menuStyle.value.width = menuStyle.value.collapsed ? 64 : 225
+      }
+    }
+  }
+
+  /** 设置菜单位置 */
+  const setMenuPosition = (position: MenuStyleConfig['position']) => {
+    if (menuStyle.value) {
+      menuStyle.value.position = position
+    }
+  }
+
+  return {
+    theme,
+    toggleTheme,
+    menuStyle,
+    toggleMenuVisible,
+    toggleMenuCollapsed,
+    setMenuPosition,
+  }
 })

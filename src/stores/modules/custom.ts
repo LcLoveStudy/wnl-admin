@@ -7,7 +7,7 @@ export const useCustomStore = defineStore('custom', () => {
   const asideMenuFold = ref(false)
   const theme = useLocalStorage<'dark' | 'light'>(LocalStorageKeys.THEME, 'light') // 主题色
   /** 切换默认主题 */
-  const checkoutTheme = () => {
+  const toggleTheme = () => {
     const transition = document.startViewTransition(() => {
       theme.value = theme.value === 'dark' ? 'light' : 'dark'
       document.documentElement.classList.toggle('dark')
@@ -20,23 +20,23 @@ export const useCustomStore = defineStore('custom', () => {
       if (theme.value === 'dark') {
         document.documentElement.animate(
           {
-            clipPath: [`circle(0% at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`]
+            clipPath: [`circle(0% at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`],
           },
           {
             duration: 600,
-            pseudoElement: '::view-transition-new(root)'
-          }
+            pseudoElement: '::view-transition-new(root)',
+          },
         )
       } else {
         document.documentElement.animate(
           {
             zIndex: [99999, 99999],
-            clipPath: [`circle(${radius}px at ${x}px ${y}px)`, `circle(0% at ${x}px ${y}px)`]
+            clipPath: [`circle(${radius}px at ${x}px ${y}px)`, `circle(0% at ${x}px ${y}px)`],
           },
           {
             duration: 600,
-            pseudoElement: '::view-transition-old(root)'
-          }
+            pseudoElement: '::view-transition-old(root)',
+          },
         )
       }
     })
@@ -50,5 +50,5 @@ export const useCustomStore = defineStore('custom', () => {
     }
   })
 
-  return { asideMenuFold, theme, checkoutTheme }
+  return { asideMenuFold, theme, toggleTheme }
 })

@@ -2,7 +2,7 @@
   <div class="dark:bg-[#16181c] text-primary tablet:px-12 phone:px-[5vw] phone:pt-6">
     <!-- 主题切换按钮 -->
     <div class="tablet:float-none phone:float-right flex items-center justify-end">
-      <theme-checkout
+      <theme-switcher
         container-class="phone:px-[16px] phone:py-[8px] tablet:mt-0 phone:mt-[4vh] tablet:px-8 tablet:py-3 rounded-full flex items-center bg-slate-100 dark:bg-gray-700"
       />
     </div>
@@ -53,7 +53,7 @@ import SliderVerify from '@/components/slider-verify'
 import { useUserStore } from '@/stores'
 import type { FormInstance, FormRules } from 'element-plus'
 import DogIcon from '@/assets/images/login/dog.png'
-import ThemeCheckout from '@/components/theme-checkout/index.vue'
+import ThemeSwitcher from '@/components/theme-switcher/index.vue'
 const router = useRouter()
 const { login } = useUserStore()
 const loginFormRef = ref<FormInstance>()

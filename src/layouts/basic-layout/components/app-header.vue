@@ -3,7 +3,7 @@
     <div class="flex items-center"></div>
     <div class="flex items-center space-x-4">
       <!-- 主题切换 -->
-      <theme-checkout
+      <theme-switcher
         container-class="w-9 h-9 hover:bg-primary-hover transition-colors rounded-full"
       />
       <!-- 用户菜单 -->
@@ -13,6 +13,6 @@
 </template>
 
 <script setup lang="ts">
-import ThemeCheckout from '@/components/theme-checkout/index.vue'
+import ThemeSwitcher from '@/components/theme-switcher/index.vue'
 import AppUserMenu from '@/layouts/basic-layout/components/app-user-menu.vue'
 </script>

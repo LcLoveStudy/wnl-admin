@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-center cursor-pointer theme-btn" :class="containerClass">
-    <el-icon @click="checkoutTheme" :size="size" :color="colorComputed">
+    <el-icon @click="toggleTheme" :size="size" :color="colorComputed">
       <component :is="iconComponent" />
     </el-icon>
   </div>
@@ -11,7 +11,7 @@ import { useCustomStore } from '@/stores'
 import { Moon, Sunny } from '@element-plus/icons-vue'
 import { storeToRefs } from 'pinia'
 const { theme } = storeToRefs(useCustomStore())
-const { checkoutTheme } = useCustomStore()
+const { toggleTheme } = useCustomStore()
 const iconComponent = computed(() => {
   return theme.value === 'dark' ? Sunny : Moon
 })

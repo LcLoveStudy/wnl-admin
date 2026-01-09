@@ -1,6 +1,10 @@
 <template>
-  <div class="flex items-center justify-center cursor-pointer" :class="containerClass">
-    <el-icon @click="toggleSidebarVisible" :size="size" :color="colorComputed">
+  <div
+    @click="toggleSidebarVisible"
+    class="flex items-center justify-center cursor-pointer"
+    :class="containerClass"
+  >
+    <el-icon :size="size" :color="colorComputed">
       <component :is="iconComponent" />
     </el-icon>
   </div>

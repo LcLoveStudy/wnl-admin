@@ -14,16 +14,16 @@
     >
       <div
         v-show="isMenuVisible"
-        class="absolute top-full right-[-10px] mt-2 min-w-[200px] border border-solid border-gray-300 bg-white rounded-md shadow-lg z-50 py-1"
+        class="absolute top-full right-[-10px] mt-2 min-w-[200px] border border-solid border-layout-border bg-white dark:bg-black rounded-md shadow dark:shadow-gray-500 z-50 py-1"
         @mouseenter="handleMenuEnter"
         @mouseleave="handleMenuLeave"
       >
         <!-- 用户信息 -->
-        <div v-if="showUserInfo" class="px-4 py-3 mb-1 border-b border-gray-300">
+        <div v-if="showUserInfo" class="px-4 py-3 mb-1 border-b border-layout-border text-primary">
           <div class="flex items-center gap-4">
-            <app-avatar :size="40" avatar-url="/favicon.ico" />
+            <app-avatar :size="40" :clickable="false" avatar-url="/favicon.ico" />
             <div class="flex flex-col items-start">
-              <span class="text-base font-medium text-gray-900">
+              <span class="text-base font-medium">
                 {{ userStore.userinfo?.nickname || userStore.userinfo?.username }}
               </span>
               <span v-if="userStore.userinfo?.username" class="text-base text-gray-400 mt-0.5">
@@ -35,7 +35,7 @@
         <!-- 菜单列表 -->
         <div v-for="item in defaultMenuItems" :key="item.command" class="px-1">
           <div
-            class="px-4 py-2 flex items-center rounded-xs gap-2 text-base text-gray-700 cursor-pointer hover:bg-gray-100 transition-colors"
+            class="px-4 py-2 flex items-center rounded-xs gap-2 text-base cursor-pointer hover:bg-primary-hover transition-colors"
             @click="handleMenuItemClick(item)"
           >
             <el-icon v-if="item.icon" class="text-base">

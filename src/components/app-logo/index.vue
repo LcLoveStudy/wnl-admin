@@ -1,7 +1,9 @@
 <template>
   <div class="flex items-center gap-2.5" :class="containerClass">
     <img :src="logoUrl" alt="logo" :class="imageClass" />
-    <span v-if="showTitle" :class="titleClass">{{ ConstEnums.PROJECT_NAME }}</span>
+    <span class="text-primary" v-if="showTitle" :class="titleClass">{{
+      ConstEnums.PROJECT_NAME
+    }}</span>
   </div>
 </template>
 

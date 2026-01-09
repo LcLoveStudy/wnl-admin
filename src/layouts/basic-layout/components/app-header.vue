@@ -1,5 +1,5 @@
 <template>
-  <header class="h-[50px] border-b border-b-gray-200 flex items-center justify-between px-8">
+  <header class="h-[50px] border-b border-layout-border flex items-center justify-between px-8">
     <div class="flex items-center"></div>
     <div class="flex items-center space-x-4">
       <theme-checkout container-class="w-8 h-8 hover:bg-gray-100 transition-colors rounded-full" />

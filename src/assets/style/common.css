@@ -6,7 +6,16 @@
   --breakpoint-phone: 320px;
   --breakpoint-tablet: 640px;
   --breakpoint-desktop: 1280px;
-  --color-dark-parimay: #1d2025;
+  /** 默认颜色 */
+  --color-primary: #333;
+  /* 布局统一边框颜色（默认亮色主题），会配合 .dark 覆盖 */
+  --color-layout-border: #e5e7eb; /* gray-200 */
+}
+
+/* 主题相关：暗色模式下覆盖布局边框颜色 */
+.dark {
+  --color-layout-border: #4b5563; /* gray-600 */
+  --color-primary: #fff;
 }
 
 body,

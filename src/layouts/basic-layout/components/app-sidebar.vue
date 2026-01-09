@@ -1,6 +1,6 @@
 <template>
   <!-- Sidebar 内容 -->
-  <aside class="h-full border-r border-r-gray-200" :style="AppSidebarStyle">
+  <aside class="h-full border-r border-layout-border" :style="AppSidebarStyle">
     <!-- logo部分 -->
     <app-logo container-class="pl-8 py-4" />
   </aside>

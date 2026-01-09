@@ -1,5 +1,5 @@
 <template>
-  <div class="dark:bg-[#16181c] dark:text-white tablet:px-12 phone:px-[5vw] phone:pt-6">
+  <div class="dark:bg-[#16181c] text-primary tablet:px-12 phone:px-[5vw] phone:pt-6">
     <!-- 主题切换按钮 -->
     <div class="tablet:float-none phone:float-right flex items-center justify-end">
       <theme-checkout

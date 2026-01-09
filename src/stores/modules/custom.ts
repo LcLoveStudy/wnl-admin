@@ -81,7 +81,7 @@ export const useCustomStore = defineStore('custom', () => {
       menuStyle.value.visible = !menuStyle.value.visible
       // 当菜单隐藏时，设置很小的宽度用于动画；当显示时，根据折叠状态设置宽度
       if (!menuStyle.value.visible) {
-        menuStyle.value.width = 0.01 // 设置很小的宽度用于动画过渡
+        menuStyle.value.width = 0 // 设置很小的宽度用于动画过渡
       } else {
         menuStyle.value.width = menuStyle.value.collapsed ? 64 : 225
       }

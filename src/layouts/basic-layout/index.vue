@@ -22,6 +22,6 @@ const { menuStyle } = storeToRefs(useCustomStore())
 /** 计算整体布局样式 */
 const BasicLayoutStyle = computed(() => ({
   gridTemplateColumns:
-    menuStyle.value && menuStyle.value.width ? `${menuStyle.value.width}px 1fr` : '1fr',
+    menuStyle.value && menuStyle.value.width ? `${menuStyle.value.width}px 1fr` : '0 1fr',
 }))
 </script>

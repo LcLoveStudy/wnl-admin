@@ -1,9 +1,9 @@
 <template>
-  <div class="w-full h-full grid" :style="BasicLayoutStyle">
+  <div class="w-full h-full grid transition-all duration-300 ease-in-out" :style="BasicLayoutStyle">
     <!-- 侧边栏 -->
     <AppSidebar />
     <!-- 内容区域 -->
-    <div class="flex flex-col">
+    <div class="flex flex-col transition-all duration-300">
       <!-- 头部 -->
       <AppHeader />
       <!-- 内容 -->

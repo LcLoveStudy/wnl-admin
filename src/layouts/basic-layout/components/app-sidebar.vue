@@ -1,17 +1,25 @@
 <template>
   <!-- Sidebar 内容 -->
   <aside
-    class="h-full border-r border-layout-border transition-all ease-in-out overflow-hidden"
+    class="h-full relative border-r border-layout-border transition-all ease-in-out overflow-hidden"
     :style="AppSidebarStyle"
   >
     <!-- logo部分 -->
-    <app-logo :container-class="`pl-8 h-[${LAYOUT_CONSTANTS.HEADER_HEIGHT}px]`" />
+    <app-logo
+      :showTitle="!layoutConfig?.sidebar.collapsed"
+      :container-class="`pl-4 h-[${LAYOUT_CONSTANTS.HEADER_HEIGHT}px]`"
+    />
+    <!-- 折叠菜单 -->
+    <app-sidebar-collapse
+      container-class="absolute bottom-4 left-6 w-7 h-7 rounded bg-primary-hover hover:bg-[#ccc] dark:hover:bg-[#666] transition-all ease-in-out"
+    />
   </aside>
 </template>
 
 <script setup lang="ts">
 import { LAYOUT_CONSTANTS } from '@/enums/const-enums'
 import AppLogo from '@/components/app-logo/index.vue'
+import AppSidebarCollapse from './app-sidebar-collapse.vue'
 import { useCustomStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 const { layoutConfig } = storeToRefs(useCustomStore())

@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center gap-2.5" :class="containerClass">
-    <img :src="logoUrl" alt="logo" :class="imageClass" />
+    <img :src="logoUrl" alt="logo" class="rounded" :class="imageClass" />
     <span class="text-primary" v-if="showTitle" :class="titleClass">{{
       ConstEnums.PROJECT_NAME
     }}</span>

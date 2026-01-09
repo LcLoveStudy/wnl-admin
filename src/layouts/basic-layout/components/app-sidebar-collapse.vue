@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-center cursor-pointer" :class="containerClass">
-    <el-icon @click="toggleSidebarVisible" :size="size" :color="colorComputed">
+    <el-icon @click="toggleSidebarCollapsed" :size="size" :color="colorComputed">
       <component :is="iconComponent" />
     </el-icon>
   </div>
@@ -8,16 +8,20 @@
 
 <script setup lang="ts">
 import { useCustomStore } from '@/stores'
-import { Expand, Fold } from '@element-plus/icons-vue'
+import { DArrowRight, DArrowLeft } from '@element-plus/icons-vue'
 import { storeToRefs } from 'pinia'
+
 const { layoutConfig, theme } = storeToRefs(useCustomStore())
-const { toggleSidebarVisible } = useCustomStore()
+const { toggleSidebarCollapsed } = useCustomStore()
+
+// 根据侧边栏折叠状态显示不同图标
 const iconComponent = computed(() => {
-  return layoutConfig.value?.sidebar.visible ? Fold : Expand
+  return layoutConfig.value?.sidebar.collapsed ? DArrowRight : DArrowLeft
 })
 
+// 图标颜色根据主题变化
 const colorComputed = computed(() => {
-  return theme.value === 'dark' ? '#fff' : '#000'
+  return theme.value === 'dark' ? '#fff' : '#333'
 })
 
 interface Props {
@@ -26,6 +30,6 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  size: 20,
+  size: 14,
 })
 </script>

@@ -23,10 +23,10 @@
           <div class="flex items-center gap-4">
             <app-avatar :size="40" avatar-url="/favicon.ico" />
             <div class="flex flex-col items-start">
-              <span class="text-xl font-medium text-gray-900">
+              <span class="text-base font-medium text-gray-900">
                 {{ userStore.userinfo?.nickname || userStore.userinfo?.username }}
               </span>
-              <span v-if="userStore.userinfo?.username" class="text-xl text-gray-400 mt-0.5">
+              <span v-if="userStore.userinfo?.username" class="text-base text-gray-400 mt-0.5">
                 {{ userStore.userinfo.username }}
               </span>
             </div>
@@ -35,10 +35,10 @@
         <!-- 菜单列表 -->
         <div v-for="item in defaultMenuItems" :key="item.command" class="px-1">
           <div
-            class="px-4 py-2 flex items-center rounded-xs gap-2 text-xl text-gray-700 cursor-pointer hover:bg-gray-100 transition-colors"
+            class="px-4 py-2 flex items-center rounded-xs gap-2 text-base text-gray-700 cursor-pointer hover:bg-gray-100 transition-colors"
             @click="handleMenuItemClick(item)"
           >
-            <el-icon v-if="item.icon" class="text-xl">
+            <el-icon v-if="item.icon" class="text-base">
               <component :is="item.icon" />
             </el-icon>
             <span>{{ item.label }}</span>

@@ -9,4 +9,6 @@ export const ConstEnums = {
 export const LAYOUT_CONSTANTS = {
   /** 侧边栏宽度（px） */
   SIDEBAR_WIDTH: 225,
+  /** header高度(px) */
+  HEADER_HEIGHT: 50,
 } as const

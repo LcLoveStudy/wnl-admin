@@ -1,7 +1,7 @@
 <template>
   <!-- Sidebar 内容 -->
   <aside
-    class="h-full border-r border-layout-border transition-all duration-300 ease-in-out overflow-hidden"
+    class="h-full border-r border-layout-border transition-all ease-in-out overflow-hidden"
     :style="AppSidebarStyle"
   >
     <!-- logo部分 -->
@@ -20,5 +20,6 @@ const AppSidebarStyle = computed(() => ({
   width: `${menuStyle.value?.width}px`,
   opacity: menuStyle.value?.visible ? 1 : 0,
   pointerEvents: (menuStyle.value?.visible ? 'auto' : 'none') as 'auto' | 'none',
+  transitionDuration: `${LAYOUT_CONSTANTS.LAYOUT_ANIMATION_DURATION}ms`,
 }))
 </script>

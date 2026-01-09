@@ -1,9 +1,12 @@
 <template>
   <div class="flex items-center gap-2.5" :class="containerClass">
     <img :src="logoUrl" alt="logo" class="rounded" :class="imageClass" />
-    <span class="text-primary" v-if="showTitle" :class="titleClass">{{
-      ConstEnums.PROJECT_NAME
-    }}</span>
+    <div
+      class="text-primary transition-transform origin-left ease-in-out"
+      :class="[titleClass, showTitle ? 'duration-600 scale-100' : 'scale-0 duration-200']"
+    >
+      {{ ConstEnums.PROJECT_NAME }}
+    </div>
   </div>
 </template>
 

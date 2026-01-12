@@ -34,6 +34,7 @@ export const staticRoutes: RouteConfig[] = [
 export const rootRoute: RouteConfig = {
   name: 'Root',
   path: '/',
+  redirect: '/dashboard',
   component: () => import('@/views/system/index.vue'),
   meta: {
     title: '首页',

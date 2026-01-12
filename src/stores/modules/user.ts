@@ -4,6 +4,8 @@ import { useLocalStorage } from '@/hooks'
 import { getRandomString } from '@lichang666/utils'
 import type { UserInfo } from '@/types/user'
 import { ElMessage } from 'element-plus'
+import { useRoutesStore } from './routes'
+import { dynamicRoutes } from '@/router/config/dynamicRoutes'
 
 interface LoginRequestData {
   username: string
@@ -22,6 +24,8 @@ export const useUserStore = defineStore('user', () => {
       roles: ['admin'],
     }
     token.value = getRandomString(32)
+    const { initDynamicRoutes } = useRoutesStore()
+    initDynamicRoutes(dynamicRoutes)
   }
   /** 退出登录操作 */
   const logout = async () => {

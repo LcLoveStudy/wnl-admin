@@ -55,7 +55,7 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <style lang="less" scoped>
-/deep/.el-button + .el-button {
+:deep(.el-button + .el-button) {
   margin-left: 0;
 }
 </style>

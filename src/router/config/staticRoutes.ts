@@ -1,4 +1,5 @@
 import type { RouteConfig } from '../types'
+import { errorRoutes } from './errorRoutes'
 
 /**
  * 静态路由配置 - 不需要权限控制的路由
@@ -15,15 +16,14 @@ export const staticRoutes: RouteConfig[] = [
       breadcrumb: false,
     },
   },
+  // 全局通配符路由 - 重定向到404页面
   {
-    name: 'NotFound',
+    name: 'CatchAll',
     path: '/:pathMatch(.*)*',
-    component: () => import('@/views/error/404.vue'),
+    redirect: '/404',
     meta: {
-      title: '页面不存在',
-      requiresAuth: false,
+      title: '重定向',
       hidden: true,
-      breadcrumb: false,
     },
   },
 ]
@@ -39,5 +39,8 @@ export const rootRoute: RouteConfig = {
     title: '首页',
     requiresAuth: true,
   },
-  children: [], // 动态路由会添加到这里
+  children: [
+    // 错误页面路由
+    ...errorRoutes,
+  ], // 动态路由会添加到这里
 }

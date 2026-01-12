@@ -7,7 +7,7 @@ export interface RouteConfig extends Omit<RouteRecordRaw, 'children'> {
   // 路由路径
   path: string
   // 组件路径 (相对于 views 目录)
-  component: RouteComponent | Lazy<RouteComponent>
+  component?: RouteComponent | Lazy<RouteComponent>
   // 路由元信息
   meta: RouteMeta
   // 子路由

@@ -1,21 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { setupRouterGuards } from './guards'
+import { rootRoute, staticRoutes } from '@/router/config/staticRoutes'
+import { formatRoutes } from '@/router/utils'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/login',
-      meta: {
-        title: '登录',
-      },
-      component: () => import('@/views/login/index.vue'),
-    },
-    {
-      path: '/',
-      meta: {},
-      component: () => import('@/views/system/index.vue'),
-    },
-  ],
+  routes: [...formatRoutes(staticRoutes), rootRoute],
 })
 
 setupRouterGuards(router)

@@ -1,6 +1,6 @@
 import type { Router } from 'vue-router'
 import { useUserStore } from '@/stores'
-import { isErrorRoute } from '../config/errorRoutes'
+import { isErrorRoute } from '@/router/utils'
 
 /** 初始化路由导航守卫 */
 export const setupRouterGuards = (router: Router) => {

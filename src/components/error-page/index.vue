@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full flex items-center justify-center bg-gray-50 px-4">
+  <div class="h-full flex items-center justify-center bg-app-bg px-4">
     <div class="max-w-md w-full text-center">
       <!-- 错误代码 -->
       <div :class="['text-6xl md:text-7xl lg:text-8xl font-bold mb-6', codeColor]">
@@ -7,12 +7,12 @@
       </div>
 
       <!-- 错误标题 -->
-      <h1 class="text-2xl md:text-3xl font-semibold text-gray-900 mb-4">
+      <h1 class="text-2xl md:text-3xl font-semibold mb-4">
         {{ title }}
       </h1>
 
       <!-- 错误描述 -->
-      <p class="text-gray-600 mb-8 text-base md:text-lg">
+      <p class="text-gray-600 dark:text-white mb-8 text-base md:text-lg">
         {{ description }}
       </p>
 

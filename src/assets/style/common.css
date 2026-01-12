@@ -12,6 +12,7 @@
   --color-primary-hover: #eee;
   /* 布局统一边框颜色（默认亮色主题），会配合 .dark 覆盖 */
   --color-layout-border: #e5e7eb; /* gray-200 */
+  --color-app-bg: #f9fafb; /* gray-100 */
 }
 
 /* 主题相关：暗色模式下覆盖布局边框颜色 */
@@ -19,6 +20,7 @@
   --color-layout-border: #4b5563; /* gray-600 */
   --color-primary: #fff;
   --color-primary-hover: #333;
+  --color-app-bg: #1f2937; /* gray-900 */
 }
 
 body,

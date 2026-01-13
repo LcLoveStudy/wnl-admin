@@ -1,7 +1,7 @@
 import { LocalStorageKeys } from '@/enums/localstorage'
 import { defineStore } from 'pinia'
 import { useLocalStorage } from '@/hooks'
-import { getRandomString } from '@lichang666/utils'
+import { getRandomString } from '@/utils/string/getRandomString'
 import type { UserInfo } from '@/types/user'
 import { ElMessage } from 'element-plus'
 import { useRoutesStore } from './routes'

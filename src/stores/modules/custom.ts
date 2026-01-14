@@ -45,7 +45,7 @@ export const useCustomStore = defineStore('custom', () => {
       fixed: true, // 默认固定侧边栏
     },
     menu: {
-      position: 'header', // 默认在侧边栏
+      position: 'sidebar', // 默认在侧边栏
       theme: 'dark', // 默认深色主题
     },
   })

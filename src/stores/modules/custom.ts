@@ -19,9 +19,7 @@ interface SidebarConfig {
 /** 菜单样式配置 */
 interface MenuStyleConfig {
   /** 菜单位置 */
-  position: 'sidebar' | 'header' | 'top'
-  /** 菜单模式 */
-  mode: 'inline' | 'horizontal' | 'vertical'
+  position: 'sidebar' | 'header'
   /** 菜单主题 */
   theme: 'light' | 'dark'
 }
@@ -47,8 +45,7 @@ export const useCustomStore = defineStore('custom', () => {
       fixed: true, // 默认固定侧边栏
     },
     menu: {
-      position: 'sidebar', // 默认在侧边栏
-      mode: 'inline', // 默认内联模式
+      position: 'header', // 默认在侧边栏
       theme: 'dark', // 默认深色主题
     },
   })

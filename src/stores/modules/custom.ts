@@ -36,7 +36,7 @@ export const useCustomStore = defineStore('custom', () => {
   const theme = useLocalStorage<'dark' | 'light'>(LocalStorageKeys.THEME, 'light') // 主题色
 
   /** 布局配置 */
-  const layoutConfig = useLocalStorage<LayoutConfig>(LocalStorageKeys.MENU_STYLE, {
+  const layoutConfig = useLocalStorage<LayoutConfig>(LocalStorageKeys.LAYOUT_STYLE, {
     sidebar: {
       visible: true, // 侧边栏默认可见
       collapsed: false, // 侧边栏默认展开

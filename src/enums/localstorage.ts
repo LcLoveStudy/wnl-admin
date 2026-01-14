@@ -3,5 +3,5 @@ export enum LocalStorageKeys {
   USERINFO = 'userinfo',
   TOKEN = 'token',
   THEME = 'theme',
-  MENU_STYLE = 'menu_style'
+  LAYOUT_STYLE = 'layout-style',
 }

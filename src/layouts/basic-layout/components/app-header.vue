@@ -1,5 +1,7 @@
 <template>
-  <header class="h-[50px] border-b border-layout-border flex items-center justify-between px-8">
+  <header
+    class="h-[50px] border-b border-layout-border flex items-center justify-between pl-2 pr-8"
+  >
     <div class="flex items-center">
       <!-- 侧边栏切换按钮 -->
       <app-sidebar-toggle-button

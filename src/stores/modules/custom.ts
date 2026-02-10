@@ -18,8 +18,6 @@ interface SidebarConfig {
 
 /** 菜单样式配置 */
 interface MenuStyleConfig {
-  /** 菜单位置 */
-  position: 'sidebar' | 'header'
   /** 菜单主题 */
   theme: 'light' | 'dark'
 }
@@ -45,7 +43,6 @@ export const useCustomStore = defineStore('custom', () => {
       fixed: true, // 默认固定侧边栏
     },
     menu: {
-      position: 'sidebar', // 默认在侧边栏
       theme: 'dark', // 默认深色主题
     },
   })
@@ -122,19 +119,11 @@ export const useCustomStore = defineStore('custom', () => {
     }
   }
 
-  /** 设置菜单位置 */
-  const setMenuPosition = (position: MenuStyleConfig['position']) => {
-    if (layoutConfig.value) {
-      layoutConfig.value.menu.position = position
-    }
-  }
-
   return {
     theme,
     toggleTheme,
     layoutConfig,
     toggleSidebarVisible,
     toggleSidebarCollapsed,
-    setMenuPosition,
   }
 })

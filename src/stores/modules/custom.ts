@@ -12,8 +12,6 @@ interface SidebarConfig {
   width: number
   /** 侧边栏宽度(折叠时) */
   collapsedWidth: number
-  /** 是否固定侧边栏 */
-  fixed: boolean
 }
 
 /** 菜单样式配置 */
@@ -40,7 +38,6 @@ export const useCustomStore = defineStore('custom', () => {
       collapsed: false, // 侧边栏默认展开
       width: 225, // 展开时宽度225px
       collapsedWidth: 64, // 折叠时宽度64px
-      fixed: true, // 默认固定侧边栏
     },
     menu: {
       theme: 'dark', // 默认深色主题

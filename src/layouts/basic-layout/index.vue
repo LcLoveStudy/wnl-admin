@@ -19,10 +19,19 @@
 import AppHeader from './components/app-header.vue'
 import AppSidebar from './components/app-sidebar.vue'
 import AppContent from './components/app-content.vue'
+import { useCustomStore } from '@/stores'
+import { storeToRefs } from 'pinia'
 import { LAYOUT_CONSTANTS } from '@/enums/const-enums'
+const { layoutConfig } = storeToRefs(useCustomStore())
 /** 计算整体布局样式 */
 const BasicLayoutStyle = computed(() => {
-  const gridTemplateColumns = '1fr' // 默认只有内容区域
+  const config = layoutConfig.value
+  let gridTemplateColumns = '0 1fr' // 默认只有内容区域
+  if (config?.sidebar.visible) {
+    // 菜单在侧边栏时，根据侧边栏宽度决定布局
+    const sidebarWidth = config.sidebar?.width
+    gridTemplateColumns = sidebarWidth ? `${sidebarWidth}px 1fr` : '0 1fr'
+  }
   return {
     gridTemplateColumns,
     transitionDuration: `${LAYOUT_CONSTANTS.LAYOUT_ANIMATION_DURATION}ms`,

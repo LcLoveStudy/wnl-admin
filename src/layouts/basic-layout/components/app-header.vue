@@ -5,7 +5,6 @@
     <div class="flex items-center">
       <!-- 侧边栏切换按钮 -->
       <app-sidebar-toggle-button
-        v-if="showSidebarToggleButton"
         container-class="w-9 h-9 hover:bg-primary-hover transition-colors rounded"
       />
     </div>
@@ -24,11 +23,4 @@
 import ThemeSwitcher from '@/components/theme-switcher/index.vue'
 import AppUserMenu from '@/layouts/basic-layout/components/app-user-menu.vue'
 import AppSidebarToggleButton from '@/components/app-sidebar-toggle-button/index.vue'
-import { useCustomStore } from '@/stores'
-import { storeToRefs } from 'pinia'
-const { layoutConfig } = storeToRefs(useCustomStore())
-/** 是否展示侧边栏折叠按钮 */
-const showSidebarToggleButton = computed(() => {
-  return layoutConfig.value && layoutConfig.value.menu.position === 'sidebar'
-})
 </script>

@@ -1,9 +1,11 @@
 <template>
   <main class="flex-1 bg-app-bg">
     <slot>
-      <keep-alive :include="chcheKeys">
-        <router-view :key="cacheKey" />
-      </keep-alive>
+      <router-view v-slot="{ Component }">
+        <keep-alive :include="cacheKeys">
+          <component :is="Component" :key="cacheKey" />
+        </keep-alive>
+      </router-view>
     </slot>
   </main>
 </template>
@@ -22,5 +24,9 @@ const cacheKey = computed(() => {
 })
 
 /** 缓存下来的key */
-const chcheKeys = computed(() => visitedViews.value.map((v) => v.cacheKey))
+const cacheKeys = computed(() => {
+  const list = visitedViews.value.map((v) => v.name)
+  console.log(list)
+  return list
+})
 </script>

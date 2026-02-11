@@ -19,14 +19,8 @@ const route = useRoute()
 const { visitedViews } = storeToRefs(useRoutesStore())
 
 /** 当前缓存的key */
-const cacheKey = computed(() => {
-  return generateCacheKey(String(route.name), route.params, route.query)
-})
+const cacheKey = computed(() => generateCacheKey(String(route.name), route.params, route.query))
 
 /** 缓存下来的key */
-const cacheKeys = computed(() => {
-  const list = visitedViews.value.map((v) => v.name)
-  console.log(list)
-  return list
-})
+const cacheKeys = computed(() => visitedViews.value.map((v) => v.name))
 </script>

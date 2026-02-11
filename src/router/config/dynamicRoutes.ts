@@ -23,6 +23,7 @@ export const dynamicRoutes: RouteConfig[] = [
     meta: {
       title: '示例',
       requiresAuth: false,
+      breadcrumb: true,
       icon: 'Coin',
       sort: 2,
     },
@@ -37,6 +38,19 @@ export const dynamicRoutes: RouteConfig[] = [
           icon: 'Open',
           keepAlive: true,
           sort: 1,
+          breadcrumb: true,
+        },
+      },
+      {
+        path: 'clickoutside',
+        name: 'clickoutside',
+        component: () => import('@/views/system/examples/clickoutside/index.vue'),
+        meta: {
+          title: '点击外部区域',
+          requiresAuth: false,
+          icon: 'Open',
+          keepAlive: true,
+          sort: 2,
           breadcrumb: true,
         },
       },

@@ -7,6 +7,7 @@
       <app-sidebar-toggle-button
         container-class="w-9 h-9 hover:bg-primary-hover transition-colors rounded"
       />
+      <app-breadcrumb container-class="ml-4" />
     </div>
     <div class="flex items-center space-x-4">
       <!-- 主题切换 -->
@@ -23,4 +24,5 @@
 import ThemeSwitcher from '@/components/theme-switcher/index.vue'
 import AppUserMenu from '@/layouts/basic-layout/components/app-user-menu.vue'
 import AppSidebarToggleButton from '@/components/app-sidebar-toggle-button/index.vue'
+import AppBreadcrumb from './app-breadcrumb.vue'
 </script>

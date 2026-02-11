@@ -16,4 +16,30 @@ export const dynamicRoutes: RouteConfig[] = [
       breadcrumb: true,
     },
   },
+  {
+    path: 'examples',
+    name: 'Examples',
+    redirect: '/slider-verify',
+    meta: {
+      title: '示例',
+      requiresAuth: false,
+      icon: 'examples',
+      sort: 2,
+    },
+    children: [
+      {
+        path: 'slider-verify',
+        name: 'SliderVerify',
+        component: () => import('@/views/system/examples/slider-verify/index.vue'),
+        meta: {
+          title: '滑块验证',
+          requiresAuth: false,
+          icon: 'slider-verify',
+          keepAlive: true,
+          sort: 1,
+          breadcrumb: true,
+        },
+      },
+    ],
+  },
 ]

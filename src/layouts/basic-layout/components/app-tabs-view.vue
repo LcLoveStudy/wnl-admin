@@ -52,9 +52,14 @@ const handleTabsEdit = (targetName: TabPaneName | undefined, action: 'remove' | 
         }
       })
     }
-
     activedTabName.value = activeName
     visitedViews.value = tabs.filter((tab) => tab.cacheKey !== targetName)
+    const { params, query } = parseCacheKey(String(activeName)) || {}
+    router.push({
+      name: visitedViews.value.find((v) => v.cacheKey === activeName)?.name,
+      params,
+      query,
+    })
   }
 }
 

@@ -15,16 +15,6 @@ a {
   text-decoration: none;
 }
 
-:root {
-  /* 主体部分的背景颜色 */
-  --container-main-bgc: #eceff4;
-}
-
-html.dark,
-.dark {
-  --container-main-bgc: #16191d;
-}
-
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;

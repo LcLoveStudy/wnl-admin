@@ -1,0 +1,29 @@
+<template>
+  <el-sub-menu v-if="isSubMenu" :index="menuItem.name">
+    <template #title>
+      <el-icon><component :is="menuItem.icon" /></el-icon>
+      <span>{{ menuItem.title }}</span>
+    </template>
+    <template v-for="item in menuItem.children" :key="item.name">
+      <app-menu-item :menu-item="item" />
+    </template>
+  </el-sub-menu>
+  <el-menu-item v-else :index="menuItem.name">
+    <template #title>
+      <el-icon><component :is="menuItem.icon" /></el-icon>
+      <span>{{ menuItem.title }}</span>
+    </template>
+  </el-menu-item>
+</template>
+
+<script setup lang="ts">
+import type { MenuItemType } from '@/types/menu'
+
+const { menuItem } = defineProps<{
+  menuItem: MenuItemType
+}>()
+
+const isSubMenu = computed(() => {
+  return menuItem.children && menuItem.children.length > 0
+})
+</script>

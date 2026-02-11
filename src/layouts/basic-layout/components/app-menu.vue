@@ -1,45 +1,53 @@
 <template>
   <div class="py-2" :class="{ 'px-2': !layoutConfig?.sidebar.collapsed }">
-    <el-menu default-active="2" :collapse="layoutConfig?.sidebar.collapsed">
-      <el-sub-menu index="1">
-        <template #title>
-          <el-icon><location /></el-icon>
-          <span>Navigator One</span>
-        </template>
-        <el-menu-item-group>
-          <template #title><span>Group One</span></template>
-          <el-menu-item index="1-1">item one</el-menu-item>
-          <el-menu-item index="1-2">item two</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="Group Two">
-          <el-menu-item index="1-3">item three</el-menu-item>
-        </el-menu-item-group>
-        <el-sub-menu index="1-4">
-          <template #title><span>item four</span></template>
-          <el-menu-item index="1-4-1">item one</el-menu-item>
-        </el-sub-menu>
-      </el-sub-menu>
-      <el-menu-item index="2">
-        <el-icon><icon-menu /></el-icon>
-        <template #title>Navigator Two</template>
-      </el-menu-item>
-      <el-menu-item index="3" disabled>
-        <el-icon><document /></el-icon>
-        <template #title>Navigator Three</template>
-      </el-menu-item>
-      <el-menu-item index="4">
-        <el-icon><setting /></el-icon>
-        <template #title>Navigator Four</template>
-      </el-menu-item>
+    <el-menu
+      :default-active="activeName"
+      :collapse="layoutConfig?.sidebar.collapsed"
+      @select="selectMenuHandler"
+    >
+      <app-menu-item v-for="menuItem in menuList" :key="menuItem.name" :menuItem="menuItem" />
     </el-menu>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Document, Menu as IconMenu, Location, Setting } from '@element-plus/icons-vue'
+import AppMenuItem from './app-menu-item.vue'
 import { storeToRefs } from 'pinia'
-import { useCustomStore } from '@/stores'
+import type { RouteConfig } from '@/router/types'
+import { useCustomStore, useRoutesStore } from '@/stores'
+import type { MenuItemType } from '@/types/menu'
 const { layoutConfig } = storeToRefs(useCustomStore())
+const { dynamicRoutes } = storeToRefs(useRoutesStore())
+const router = useRouter()
+
+const activeName = computed(() => {
+  return router.currentRoute.value.name as string
+})
+
+const menuList = computed(() => {
+  return formatMenu(dynamicRoutes.value)
+})
+
+/** 格式化路由为菜单 */
+const formatMenu = (routes: RouteConfig[]): MenuItemType[] => {
+  return routes.map((route) => {
+    const item = {
+      title: route.meta.title,
+      name: route.name,
+      icon: route.meta.icon,
+      children: [] as MenuItemType[],
+    }
+    if (route.children) {
+      item.children = formatMenu(route.children)
+    }
+    return item
+  })
+}
+
+/** 激活菜单，触发跳转 */
+const selectMenuHandler = (name: string) => {
+  router.push({ name })
+}
 </script>
 
 <style lang="less" scoped>

@@ -10,7 +10,7 @@ export const dynamicRoutes: RouteConfig[] = [
     meta: {
       title: '仪表盘',
       requiresAuth: false,
-      icon: 'dashboard',
+      icon: 'Menu',
       keepAlive: true,
       sort: 1,
       breadcrumb: true,
@@ -23,7 +23,7 @@ export const dynamicRoutes: RouteConfig[] = [
     meta: {
       title: '示例',
       requiresAuth: false,
-      icon: 'examples',
+      icon: 'Coin',
       sort: 2,
     },
     children: [
@@ -34,7 +34,7 @@ export const dynamicRoutes: RouteConfig[] = [
         meta: {
           title: '滑块验证',
           requiresAuth: false,
-          icon: 'slider-verify',
+          icon: 'Open',
           keepAlive: true,
           sort: 1,
           breadcrumb: true,

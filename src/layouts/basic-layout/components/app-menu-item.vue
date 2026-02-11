@@ -24,6 +24,10 @@ const { menuItem } = defineProps<{
 }>()
 
 const isSubMenu = computed(() => {
-  return menuItem.children && menuItem.children.length > 0
+  return (
+    menuItem.children &&
+    menuItem.children.length > 0 &&
+    menuItem.children.filter((v) => !v.hidden).length
+  )
 })
 </script>

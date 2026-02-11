@@ -24,9 +24,7 @@ const activeName = computed(() => {
   return router.currentRoute.value.name as string
 })
 
-const menuList = computed(() => {
-  return formatMenu(dynamicRoutes.value)
-})
+const menuList = computed(() => formatMenu(dynamicRoutes.value))
 
 /** 格式化路由为菜单 */
 const formatMenu = (routes: RouteConfig[]): MenuItemType[] => {
@@ -35,6 +33,7 @@ const formatMenu = (routes: RouteConfig[]): MenuItemType[] => {
       title: route.meta.title,
       name: route.name,
       icon: route.meta.icon,
+      hidden: route.meta.hidden,
       children: [] as MenuItemType[],
     }
     if (route.children) {

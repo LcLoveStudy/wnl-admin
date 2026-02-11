@@ -22,6 +22,7 @@ export const setupTabGuards = (router: Router) => {
     if (exists) return
     visitedViews.value.push({
       title: (to.meta.title as string) || 'no-name',
+      keepAlive: to.meta.keepAlive as boolean,
       name: String(to.name),
       cacheKey,
     })

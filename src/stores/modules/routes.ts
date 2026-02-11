@@ -1,5 +1,6 @@
 import router from '@/router'
 import type { RouteConfig } from '@/router/types'
+import type { TabViewType } from '@/types/tabs'
 import { formatRoutes } from '@/router/utils'
 import { defineStore } from 'pinia'
 import { useUserStore } from './user'
@@ -16,5 +17,8 @@ export const useRoutesStore = defineStore('routes', () => {
     })
     dynamicRoutes.value = routes
   }
-  return { dynamicRoutes, initDynamicRoutes }
+
+  /** 已缓存的页面标签 */
+  const visitedViews = ref<TabViewType[]>([])
+  return { dynamicRoutes, initDynamicRoutes, visitedViews }
 })

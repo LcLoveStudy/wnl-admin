@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { setupRouterGuards } from './guards'
+import { setupRouterGuards, setupTabGuards } from './guards'
 import { rootRoute, staticRoutes } from '@/router/config/staticRoutes'
 import { formatRoutes } from '@/router/utils'
 
@@ -9,4 +9,5 @@ const router = createRouter({
 })
 
 setupRouterGuards(router)
+setupTabGuards(router)
 export default router

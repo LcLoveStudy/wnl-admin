@@ -48,7 +48,7 @@ export const dynamicRoutes: RouteConfig[] = [
         meta: {
           title: '点击外部区域',
           requiresAuth: false,
-          icon: 'Open',
+          icon: 'Mouse',
           keepAlive: true,
           sort: 2,
           breadcrumb: true,

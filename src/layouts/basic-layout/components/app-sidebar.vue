@@ -1,7 +1,7 @@
 <template>
   <!-- Sidebar 内容 -->
   <aside
-    class="h-full relative border-r border-layout-border transition-all ease-in-out overflow-hidden"
+    class="h-full relative border-r border-layout-border transition-all ease-in-out duration-400 overflow-hidden"
     :style="AppSidebarStyle"
   >
     <!-- logo部分 -->
@@ -31,6 +31,5 @@ const AppSidebarStyle = computed(() => ({
   width: `${layoutConfig.value?.sidebar.width}px`,
   opacity: layoutConfig.value?.sidebar.visible ? 1 : 0,
   pointerEvents: (layoutConfig.value?.sidebar.visible ? 'auto' : 'none') as 'auto' | 'none',
-  transitionDuration: `${LAYOUT_CONSTANTS.LAYOUT_ANIMATION_DURATION}ms`,
 }))
 </script>

@@ -9,6 +9,4 @@ export const ConstEnums = {
 export const LAYOUT_CONSTANTS = {
   /** header高度(px) */
   HEADER_HEIGHT: 50,
-  /** 布局变化动画时长(ms) */
-  LAYOUT_ANIMATION_DURATION: 400,
 } as const

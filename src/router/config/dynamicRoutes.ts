@@ -29,17 +29,31 @@ export const dynamicRoutes: RouteConfig[] = [
     },
     children: [
       {
-        path: 'slider-verify',
-        name: 'SliderVerify',
-        component: () => import('@/views/system/examples/slider-verify/index.vue'),
+        path: 'example-components',
+        name: 'ExampleComponents',
+        redirect: '/slider-verify',
         meta: {
-          title: '滑块验证',
+          title: '组件封装',
           requiresAuth: false,
-          icon: 'Open',
-          keepAlive: true,
-          sort: 1,
           breadcrumb: true,
+          icon: 'Help',
+          sort: 1,
         },
+        children: [
+          {
+            path: 'slider-verify',
+            name: 'SliderVerify',
+            component: () => import('@/views/system/examples/slider-verify/index.vue'),
+            meta: {
+              title: '滑块验证',
+              requiresAuth: false,
+              icon: 'Open',
+              keepAlive: true,
+              sort: 1,
+              breadcrumb: true,
+            },
+          },
+        ],
       },
       {
         path: 'clickoutside',

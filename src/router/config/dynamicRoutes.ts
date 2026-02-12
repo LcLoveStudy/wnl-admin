@@ -43,7 +43,7 @@ export const dynamicRoutes: RouteConfig[] = [
           {
             path: 'slider-verify',
             name: 'SliderVerify',
-            component: () => import('@/views/system/examples/slider-verify/index.vue'),
+            component: () => import('@/views/system/examples/component/slider-verify/index.vue'),
             meta: {
               title: '滑块验证',
               requiresAuth: false,

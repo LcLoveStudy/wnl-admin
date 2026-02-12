@@ -1,12 +1,12 @@
 <template>
-  <div class="slider_verify_box border-[1px] border-solid border-[#dcdfe6] dark:border-[#334155]">
+  <div ref="sliderVerifyBox" class="slider_verify_box border border-solid border-layout-border">
     <!-- 滑块 -->
     <div ref="rockerDom" class="slider_rocker bg-white dark:bg-[#334155]">
       <el-icon v-if="!isEnd"><SwitchButton /></el-icon>
       <el-icon v-else><Select /></el-icon>
     </div>
     <!-- 未拖拽到的部分 -->
-    <div class="fail_bar bg-gray-100 dark:bg-dark-primary"></div>
+    <div ref="failBar" class="fail_bar bg-gray-100 dark:bg-gray-950"></div>
     <!-- 文字提示 -->
     <span class="verify_tip" :style="{ color: isEnd ? '#fff' : 'transparent' }">
       {{ isEnd ? '验证通过' : '请按住滑块拖动' }}
@@ -51,18 +51,21 @@ const mouseDownHandler = (e: MouseEvent) => {
   }
 }
 
+const sliderVerifyBox = useTemplateRef('sliderVerifyBox')
+const failBar = useTemplateRef('failBar')
+
 /** 处理鼠标抬起 */
 const mouseUpHandler = () => {
   if (!rockerDom.value) return
   if (selectRocker.value) {
-    const sliderBoxDom = document.querySelector('.slider_verify_box') as HTMLDivElement
+    const sliderBoxDom = sliderVerifyBox.value as HTMLDivElement
     selectRocker.value = false
     cursorInitPlace = 0
     if (
       rockerDom.value.style.left !==
       sliderBoxDom?.clientWidth - rockerDom.value.clientWidth + 'px'
     ) {
-      const failBarDom = document.querySelector('.fail_bar') as HTMLDivElement
+      const failBarDom = failBar.value as HTMLDivElement
       rockerDom.value.style.transition = 'all 0.5s'
       failBarDom.style.transition = 'all 0.5s'
       failBarDom.style.left = '0px'
@@ -80,12 +83,12 @@ const mouseUpHandler = () => {
 
 /** 处理鼠标移动 */
 const mouseMoveHandler = (e: MouseEvent) => {
-  const sliderBoxDom = document.querySelector('.slider_verify_box')
+  const sliderBoxDom = sliderVerifyBox.value as HTMLDivElement
   if (sliderBoxDom?.contains(e.target as Node)) {
     if (selectRocker.value) {
       // 滑块应该移动的距离 = 鼠标目前x - 滑块初始的x - (鼠标按下时的x - 滑块初始的x)
       const moveDistance = e.x - rockerInitPlace - (cursorInitPlace - rockerInitPlace)
-      const failBarDom = document.querySelector('.fail_bar') as HTMLDivElement
+      const failBarDom = failBar.value as HTMLDivElement
       failBarDom.style.left = moveDistance + (rockerDom.value as HTMLDivElement).clientWidth + 'px'
       if (moveDistance <= 0) {
         isEnd.value = false
@@ -131,11 +134,11 @@ const touchMoveHandler = (e: TouchEvent) => {
   // 禁用默认行为（防止页面滚动）
   e.preventDefault()
 
-  const sliderBoxDom = document.querySelector('.slider_verify_box')
+  const sliderBoxDom = sliderVerifyBox.value as HTMLDivElement
   if (sliderBoxDom?.contains(e.target as Node)) {
     const moveDistance =
       e.touches[0].clientX - rockerInitPlace - (cursorInitPlace - rockerInitPlace)
-    const failBarDom = document.querySelector('.fail_bar') as HTMLDivElement
+    const failBarDom = failBar.value as HTMLDivElement
     failBarDom.style.left = moveDistance + (rockerDom.value as HTMLDivElement).clientWidth + 'px'
     if (moveDistance <= 0) {
       isEnd.value = false
@@ -160,12 +163,12 @@ const touchEndHandler = () => {
   if (selectRocker.value) {
     selectRocker.value = false
     cursorInitPlace = 0
-    const sliderBoxDom = document.querySelector('.slider_verify_box') as HTMLDivElement
+    const sliderBoxDom = sliderVerifyBox.value as HTMLDivElement
     if (
       rockerDom.value.style.left !==
       sliderBoxDom?.clientWidth - rockerDom.value.clientWidth + 'px'
     ) {
-      const failBarDom = document.querySelector('.fail_bar') as HTMLDivElement
+      const failBarDom = failBar.value as HTMLDivElement
       rockerDom.value.style.transition = 'all 0.5s'
       failBarDom.style.transition = 'all 0.5s'
       failBarDom.style.left = '0px'
@@ -184,7 +187,7 @@ const touchEndHandler = () => {
 /** 重置 */
 const resetVerify = () => {
   if (!rockerDom.value) return
-  const failBarDom = document.querySelector('.fail_bar') as HTMLDivElement
+  const failBarDom = failBar.value as HTMLDivElement
   if (!failBarDom) return
   failBarDom.style.left = '0px'
   rockerDom.value.style.left = '0px'
@@ -227,8 +230,7 @@ const rockerMove = () => {
 }
 
 onMounted(() => {
-  rockerDom.value = document.querySelector('.slider_rocker') as HTMLDivElement
-  rockerInitPlace = rockerDom.value.getBoundingClientRect().x
+  rockerInitPlace = rockerDom.value?.getBoundingClientRect().x || 0
   rockerMove()
 })
 

@@ -9,7 +9,7 @@
     <div ref="failBar" class="fail_bar bg-gray-100 dark:bg-gray-950"></div>
     <!-- 文字提示 -->
     <span class="verify_tip" :style="{ color: isEnd ? '#fff' : 'transparent' }">
-      {{ isEnd ? '验证通过' : '请按住滑块拖动' }}
+      {{ isEnd ? successText : promptText }}
     </span>
   </div>
 </template>
@@ -19,6 +19,14 @@ defineProps({
   width: {
     type: String,
     default: '250px',
+  },
+  successText: {
+    type: String,
+    default: '验证通过',
+  },
+  promptText: {
+    type: String,
+    default: '请按住滑块拖动',
   },
 })
 const status = defineModel('status', {

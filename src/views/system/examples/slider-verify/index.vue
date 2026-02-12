@@ -16,6 +16,17 @@
         <el-button type="primary" size="large" @click="demo2?.reset">还原</el-button>
       </div>
     </example-card>
+    <example-card title="自定义提示文案">
+      <div class="flex items-center justify-center w-full gap-6">
+        <slider-verify
+          ref="demo3"
+          width="400px"
+          success-text="验证成功啦！"
+          prompt-text="等待用户拖动滑块"
+        />
+        <el-button type="primary" size="large" @click="demo3?.reset">还原</el-button>
+      </div>
+    </example-card>
   </div>
 </template>
 
@@ -28,4 +39,5 @@ defineOptions({
 
 const demo1 = useTemplateRef('demo1')
 const demo2 = useTemplateRef('demo2')
+const demo3 = useTemplateRef('demo3')
 </script>

@@ -13,7 +13,7 @@ type ExportModuleObject = {
 
 const directives: DirectiveObject[] = [] // 存放所有的指令
 /** 循环当前目录下所有文件，自动化注册 */
-const modules = import.meta.glob('./*.ts', { eager: true })
+const modules = import.meta.glob(['./*.ts', './*/*.ts'], { eager: true })
 Object.keys(modules).forEach((key) => {
   const module = modules[key] as ExportModuleObject
   if (module) {

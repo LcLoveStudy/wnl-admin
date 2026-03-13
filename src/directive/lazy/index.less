@@ -1,0 +1,25 @@
+.lazy-skeleton {
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+
+  background: linear-gradient(90deg, #ececec 20%, #e3e3e3 40%, #ececec 60%);
+
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.03);
+
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-pulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(0.995);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

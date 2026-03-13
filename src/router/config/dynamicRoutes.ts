@@ -68,6 +68,19 @@ export const dynamicRoutes: RouteConfig[] = [
           breadcrumb: true,
         },
       },
+      {
+        path: 'lazy-load',
+        name: 'LazyLoad',
+        component: () => import('@/views/system/examples/lazy-load/index.vue'),
+        meta: {
+          title: '懒加载',
+          requiresAuth: false,
+          icon: 'Picture',
+          keepAlive: true,
+          sort: 3,
+          breadcrumb: true,
+        },
+      },
     ],
   },
 ]

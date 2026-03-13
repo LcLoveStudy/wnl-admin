@@ -1,7 +1,7 @@
 <template>
   <!-- Sidebar 内容 -->
   <aside
-    class="h-full relative border-r border-layout-border transition-all ease-in-out duration-400 overflow-hidden"
+    class="h-full tablet:relative phone:absolute bg-app-bg border-r border-layout-border transition-all ease-in-out duration-400 overflow-hidden z-50"
     :style="AppSidebarStyle"
   >
     <!-- logo部分 -->
@@ -16,6 +16,11 @@
       container-class="absolute bottom-4 left-6 w-7 h-7 rounded bg-primary-hover hover:bg-[#ccc] dark:hover:bg-[#666] transition-all ease-in-out"
     />
   </aside>
+  <div
+    v-if="layoutConfig?.sidebar.visible"
+    @click="toggleSidebarVisible()"
+    class="tablet:hidden phone:block absolute top-0 left-0 right-0 bottom-0 w-screen h-screen bg-[rgba(0,0,0,0.5)] z-40"
+  ></div>
 </template>
 
 <script setup lang="ts">
@@ -26,6 +31,8 @@ import AppMenu from './app-menu.vue'
 import { useCustomStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 const { layoutConfig } = storeToRefs(useCustomStore())
+const { toggleSidebarVisible } = useCustomStore()
+
 /** 侧边栏样式 */
 const AppSidebarStyle = computed(() => ({
   width: `${layoutConfig.value?.sidebar.width}px`,

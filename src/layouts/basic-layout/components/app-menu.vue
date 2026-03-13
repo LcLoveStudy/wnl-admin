@@ -52,6 +52,7 @@ const selectMenuHandler = (name: string) => {
 <style lang="less" scoped>
 @menu-item-height: 42px;
 :deep(.el-menu) {
+  background-color: transparent;
   border-right: none;
   .el-menu-item,
   .el-sub-menu__title {

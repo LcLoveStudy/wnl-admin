@@ -5,7 +5,7 @@
     <!-- 侧边栏 -->
     <AppSidebar />
     <!-- 内容区域 -->
-    <div class="flex flex-col transition-all duration-400">
+    <div class="h-screen flex flex-col transition-all duration-400">
       <!-- 头部 -->
       <AppHeader />
       <!-- 标签 -->

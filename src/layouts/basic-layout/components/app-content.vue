@@ -1,5 +1,5 @@
 <template>
-  <main class="flex-1 bg-app-bg">
+  <main class="flex-1 bg-app-bg overflow-auto">
     <slot>
       <router-view v-slot="{ Component }">
         <keep-alive :include="cacheKeys">

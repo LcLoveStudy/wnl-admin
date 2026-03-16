@@ -5,7 +5,7 @@
   </div>
   <div class="p-6 flex flex-col gap-6">
     <example-card title="基础示例">
-      <div class="flex items-center justify-center w-full gap-6 h-12">
+      <div class="flex items-center justify-center w-full gap-6 h-12 relative">
         <div
           v-draggable
           class="p-4 bg-amber-200 z-999 rounded flex flex-col items-center justify-center text-lg cursor-grabbing select-none"
@@ -15,7 +15,7 @@
       </div>
     </example-card>
     <example-card title="设置拖拽边界" class="example-card">
-      <div class="flex items-center justify-center w-full gap-6 h-12">
+      <div class="flex items-center justify-center w-full gap-6 h-12 relative">
         <div
           v-draggable="{
             boundary: '.example-card',
@@ -27,7 +27,7 @@
       </div>
     </example-card>
     <example-card title="网格示例" class="example-card">
-      <div class="flex items-center justify-center w-full gap-6 h-12">
+      <div class="flex items-center justify-center w-full gap-6 h-12 relative">
         <div
           v-draggable="{
             snap: 10,
@@ -39,7 +39,7 @@
       </div>
     </example-card>
     <example-card title="限制拖拽触发区域" class="example-card">
-      <div class="flex items-center justify-center w-full gap-6 h-26">
+      <div class="flex items-center justify-center w-full gap-6 h-26 relative">
         <div
           v-draggable="{
             handle: '.drag-header',
@@ -52,7 +52,7 @@
       </div>
     </example-card>
     <example-card title="限制拖拽方向" class="example-card">
-      <div class="flex items-center justify-center w-full gap-6 h-26">
+      <div class="flex items-center justify-center w-full gap-6 h-12 relative">
         <div
           v-draggable="{
             axis: 'x',
@@ -64,7 +64,7 @@
       </div>
     </example-card>
     <example-card title="触发回调" class="example-card">
-      <div class="flex items-center justify-center w-full gap-6 h-26">
+      <div class="flex items-center justify-center w-full gap-6 h-12 relative">
         <div
           v-draggable="{
             onDrag: dragHandler,

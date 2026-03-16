@@ -34,7 +34,7 @@ export const useUserStore = defineStore('user', () => {
     userinfo.value = null
     token.value = null
     setTimeout(() => {
-      window.location.href = '/wnl-admin/'
+      window.location.href = './'
     }, 1000)
   }
   return { userinfo, token, login, logout }

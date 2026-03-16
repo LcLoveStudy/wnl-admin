@@ -87,5 +87,3 @@ const dragHandler = (e: { x: number; y: number }) => {
   console.log(e.x, e.y)
 }
 </script>
-
-<style scoped lang="less"></style>

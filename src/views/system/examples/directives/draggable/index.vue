@@ -81,7 +81,7 @@
 <script setup lang="ts">
 import ExampleCard from '@/components/example-card/index.vue'
 defineOptions({
-  name: 'draggable',
+  name: 'Draggable',
 })
 const dragHandler = (e: { x: number; y: number }) => {
   console.log(e.x, e.y)

@@ -1,38 +1,41 @@
-# Simple workflow for deploying static content to GitHub Pages
 name: wnl-admin
 
 on:
-  # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
+    branches: ['main']
+
+permissions:
+  contents: write
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4 # 使用 checkout v4
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: 22 # 使用 Node.js 20
+          node-version: 22
+          cache: pnpm
 
       - name: Install pnpm
-        run: npm install -g pnpm # 安装 pnpm
+        run: npm install -g pnpm
 
       - name: Install dependencies
-        run: pnpm install # 安装依赖
+        run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: pnpm run build # 构建项目
+        run: pnpm run build
 
       - name: List files in dist directory
-        run: ls -al ./dist # 确保 dist 目录包含构建文件
+        run: ls -al ./dist
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist # 发布目录
-          publish_branch: gh-pages # 发布到 gh-pages 分支
+          publish_dir: ./dist
+          publish_branch: gh-pages

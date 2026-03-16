@@ -1,7 +1,7 @@
 <template>
   <div class="relative" @mouseleave="handleMouseLeave">
     <div @mouseenter="handleMouseEnter">
-      <app-avatar :size="30" avatar-url="/favicon.ico" />
+      <app-avatar :size="30" :avatar-url="LogoImg" />
     </div>
     <!-- 菜单项 -->
     <transition
@@ -21,7 +21,7 @@
         <!-- 用户信息 -->
         <div v-if="showUserInfo" class="px-4 py-3 mb-1 border-b border-layout-border text-primary">
           <div class="flex items-center gap-4">
-            <app-avatar :size="40" :clickable="false" avatar-url="/favicon.ico" />
+            <app-avatar :size="40" :clickable="false" :avatar-url="LogoImg" />
             <div class="flex flex-col items-start">
               <span class="text-base font-medium">
                 {{ userStore.userinfo?.nickname || userStore.userinfo?.username }}
@@ -50,15 +50,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { Star, SwitchButton } from '@element-plus/icons-vue'
 import AppAvatar from '@/components/app-avatar/index.vue'
 import { useUserStore } from '@/stores'
+import LogoImg from '/favicon.ico'
 
 interface MenuItem {
   command: string
   label: string
-  icon?: any
+  icon?: typeof Star
   divided?: boolean
   handler?: () => void
 }
@@ -137,5 +137,3 @@ const handleMenuItemClick = (item: MenuItem) => {
   isMenuVisible.value = false
 }
 </script>
-
-<style lang="less" scoped></style>

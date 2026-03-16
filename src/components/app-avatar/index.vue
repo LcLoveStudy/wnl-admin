@@ -59,15 +59,6 @@ const emit = defineEmits<{
 
 const userStore = useUserStore()
 
-// 计算最终使用的头像地址
-const finalAvatarUrl = computed(() => {
-  if (props.avatarUrl) return props.avatarUrl
-  if (props.useUserInfo && userStore.userinfo?.avatar) {
-    return userStore.userinfo.avatar
-  }
-  return ''
-})
-
 // 计算默认显示文本
 const displayText = computed(() => {
   if (props.defaultText) return props.defaultText

@@ -15,12 +15,13 @@
         container-class="w-9 h-9 hover:bg-primary-hover transition-colors rounded-full"
       />
       <!-- 用户菜单 -->
-      <app-user-menu avatar-url="/favicon.ico" />
+      <app-user-menu :avatar-url="LogoImg" />
     </div>
   </header>
 </template>
 
 <script setup lang="ts">
+import LogoImg from '/favicon.ico'
 import ThemeSwitcher from '@/components/theme-switcher/index.vue'
 import AppUserMenu from '@/layouts/basic-layout/components/app-user-menu.vue'
 import AppSidebarToggleButton from '@/components/app-sidebar-toggle-button/index.vue'

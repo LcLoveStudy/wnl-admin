@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import { ConstEnums } from '@/enums/const-enums'
-
+import LogoImg from '/favicon.ico'
 interface Props {
   /** Logo 图片地址 */
   logoUrl?: string
@@ -27,7 +27,7 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  logoUrl: '/favicon.ico',
+  logoUrl: LogoImg,
   showTitle: true,
   containerClass: '',
   imageClass: 'w-10 h-10',

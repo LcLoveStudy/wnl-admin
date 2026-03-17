@@ -1,13 +1,141 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="">
   <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
+
+    <style>
+      #app-loading {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        z-index: 9999;
+        color: #fff;
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+
+        /* 精简后的高级背景（静态更干净） */
+        /* 暗色渐变（核心） */
+        background: linear-gradient(120deg, #020617, #0f172a, #1e293b, #0f172a, #020617);
+        background-size: 200% 200%;
+        animation: gradientMove 12s ease infinite;
+      }
+
+      #app-loading::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 30% 20%, rgba(56, 189, 248, 0.15), transparent 40%),
+          radial-gradient(circle at 70% 80%, rgba(168, 85, 247, 0.12), transparent 40%);
+        pointer-events: none;
+      }
+
+      @keyframes gradientMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* 发光圆环 */
+      .loader {
+        position: relative;
+        width: 80px;
+        height: 80px;
+      }
+
+      .loader img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        z-index: 2;
+      }
+
+      .loader::before,
+      .loader::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+      }
+
+      /* 渐变旋转环（去掉模糊，更锐利） */
+      .loader::before {
+        background: conic-gradient(from 0deg, #38bdf8, #6366f1, #a855f7, #38bdf8);
+        animation: spin 1.2s linear infinite;
+      }
+
+      /* 内圈遮罩 */
+      .loader::after {
+        inset: 6px;
+        background: #020617;
+      }
+
+      /* 文案 */
+      .loading-text {
+        margin-top: 18px;
+        font-size: 14px;
+        letter-spacing: 1px;
+        opacity: 0.8;
+      }
+
+      .dots::after {
+        content: '...';
+        animation: dots 1.5s steps(3, end) infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes dots {
+        0% {
+          content: '';
+        }
+        33% {
+          content: '.';
+        }
+        66% {
+          content: '..';
+        }
+        100% {
+          content: '...';
+        }
+      }
+    </style>
   </head>
+
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <!-- 首屏 loading -->
+      <div id="app-loading">
+        <div class="loader">
+          <img src="/favicon.ico" />
+        </div>
+        <div class="loading-text">Loading<span class="dots"></span></div>
+      </div>
+    </div>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

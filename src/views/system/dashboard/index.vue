@@ -9,12 +9,12 @@
     <!-- 3️⃣ 图表区域 -->
     <div class="grid grid-cols-1 gap-5 tablet:grid-cols-12 mt-4">
       <!-- 趋势图（主图） -->
-      <div class="tablet:col-span-8">
+      <div class="desktop:col-span-8 tablet:col-span-7">
         <trend-chart />
       </div>
 
       <!-- 饼图 -->
-      <div class="tablet:col-span-4">
+      <div class="desktop:col-span-4 tablet:col-span-5">
         <pie-chart />
       </div>
     </div>

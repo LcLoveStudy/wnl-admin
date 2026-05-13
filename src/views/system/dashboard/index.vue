@@ -6,11 +6,23 @@
     <div class="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4 mt-4">
       <StatsCard v-for="item in statistics" :key="item.title" v-bind="item" />
     </div>
+    <!-- 3️⃣ 图表区域 -->
+    <div class="grid grid-cols-1 gap-5 tablet:grid-cols-12 mt-4">
+      <!-- 趋势图（主图） -->
+      <div class="tablet:col-span-8">
+        <trend-chart />
+      </div>
+
+      <!-- 饼图 -->
+      <div class="tablet:col-span-4">
+        <pie-chart />
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Banner, StatsCard } from './components'
+import { Banner, StatsCard, TrendChart, PieChart } from './components'
 const statistics = [
   {
     title: '总访问量',

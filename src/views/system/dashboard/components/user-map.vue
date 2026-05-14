@@ -3,12 +3,10 @@
     <!-- header -->
     <div class="mb-4 flex items-center justify-between">
       <div class="text-sm font-semibold text-gray-500 dark:text-gray-400">用户分布（全国）</div>
-
-      <div class="text-xs text-gray-400">3D Style Map</div>
     </div>
 
     <!-- 双层地图容器 -->
-    <div ref="chartRef" class="h-[460px] w-full"></div>
+    <div ref="chartRef" class="h-72 w-full"></div>
   </el-card>
 </template>
 
@@ -111,25 +109,40 @@ const initChart = async () => {
     geo: [
       {
         map: 'china',
-        zoom: 1.25,
-        center: [104, 36],
+
+        // ⭐ 核心
+        layoutCenter: ['50%', '50%'],
+        layoutSize: '100%',
+
+        zoom: 1,
 
         selectedMode: false,
-        emphasis: { disabled: true },
+        emphasis: {
+          disabled: true,
+        },
 
         z: 2,
+
         itemStyle: {
           borderColor: '#718AFE',
           borderWidth: 3,
+
           areaColor: {
             type: 'linear',
             x: 0,
             y: 0,
             x2: 1,
             y2: 1,
+
             colorStops: [
-              { offset: 0, color: '#53B8FD' },
-              { offset: 1, color: '#5FA6FF' },
+              {
+                offset: 0,
+                color: '#53B8FD',
+              },
+              {
+                offset: 1,
+                color: '#5FA6FF',
+              },
             ],
           },
         },
@@ -137,11 +150,16 @@ const initChart = async () => {
 
       {
         map: 'china',
-        zoom: 1.25,
-        center: [104, 36],
+
+        layoutCenter: ['50%', '50%'],
+        layoutSize: '100%',
+
+        zoom: 1,
 
         selectedMode: false,
-        emphasis: { disabled: true },
+        emphasis: {
+          disabled: true,
+        },
 
         itemStyle: {
           shadowColor: '#07CAFF',
@@ -155,11 +173,16 @@ const initChart = async () => {
 
       {
         map: 'china',
-        zoom: 1.25,
-        center: [104, 36],
+
+        layoutCenter: ['50%', '50%'],
+        layoutSize: '100%',
+
+        zoom: 1,
 
         selectedMode: false,
-        emphasis: { disabled: true },
+        emphasis: {
+          disabled: true,
+        },
 
         itemStyle: {
           shadowColor: '#4294F4',
@@ -181,7 +204,7 @@ const initChart = async () => {
         },
         rippleEffect: {
           number: 4,
-          scale: 10,
+          scale: 4, // ⭐ 关键缩小
         },
         label: {
           show: false,
@@ -197,23 +220,37 @@ const initChart = async () => {
       {
         type: 'scatter',
         coordinateSystem: 'geo',
+        zlevel: 10,
+
         itemStyle: {
           color: '#41FFE5',
         },
+
+        symbolSize: 8, // ⭐ 全局缩小
+
         label: {
           show: true,
           position: 'top',
           formatter: '{b}',
-          color: '#fff', // 可自定义文字颜色
-          fontSize: 16, // 可自定义字号
+
+          color: '#ffffff',
+
+          // ⭐ 关键：字体缩小
+          fontSize: 10,
+
+          // ⭐ 防止挤压
+          distance: 2,
         },
-        zlevel: 10,
+
         data: [
           ...points,
+
           {
             name: '青海',
             value: [100, 36],
-            symbolSize: 15,
+
+            symbolSize: 10, // ⭐ 单独点稍微突出，但别太大
+
             itemStyle: {
               color: '#F63D8C',
             },

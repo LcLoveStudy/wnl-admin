@@ -40,14 +40,15 @@ const initChart = () => {
       {
         name: '数据占比',
         type: 'pie',
+        center: ['50%', '40%'],
         radius: ['45%', '70%'], // 👉 环形图（更高级）
 
         avoidLabelOverlap: false,
 
         itemStyle: {
           borderRadius: 6,
-          borderColor: '#fff',
-          borderWidth: 2,
+          borderColor: 'transparent',
+          borderWidth: 1,
         },
 
         label: {
@@ -60,6 +61,10 @@ const initChart = () => {
             fontSize: 14,
             fontWeight: 'bold',
             color: '#111827',
+          },
+          itemStyle: {
+            borderColor: 'rgba(59,130,246,0.4)', // 只在 hover 出现品牌色
+            borderWidth: 2,
           },
         },
 

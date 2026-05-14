@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import ExampleCard from '@/components/example-card/index.vue'
 defineOptions({
-  name: 'clickoutside',
+  name: 'ClickOutside',
 })
 
 const demo1 = ref(0)

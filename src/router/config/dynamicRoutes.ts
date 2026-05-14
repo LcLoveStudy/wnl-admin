@@ -69,7 +69,7 @@ export const dynamicRoutes: RouteConfig[] = [
         children: [
           {
             path: 'clickoutside',
-            name: 'clickoutside',
+            name: 'ClickOutside',
             component: () => import('@/views/system/examples/directives/clickoutside/index.vue'),
             meta: {
               title: '点击外部区域',
@@ -94,7 +94,7 @@ export const dynamicRoutes: RouteConfig[] = [
             },
           },
           {
-            path: 'dragabble',
+            path: 'draggable',
             name: 'Draggable',
             component: () => import('@/views/system/examples/directives/draggable/index.vue'),
             meta: {

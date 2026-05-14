@@ -1,16 +1,21 @@
 <template>
   <el-sub-menu v-if="isSubMenu && !menuItem.hidden" :index="menuItem.name">
     <template #title>
-      <el-icon><component :is="menuItem.icon" /></el-icon>
+      <el-icon>
+        <component :is="menuItem.icon" />
+      </el-icon>
       <span>{{ menuItem.title }}</span>
     </template>
-    <template v-for="item in menuItem.children" :key="item.name">
-      <app-menu-item :menu-item="item" />
-    </template>
+
+    <app-menu-item v-for="item in menuItem.children" :key="item.name" :menu-item="item" />
   </el-sub-menu>
+
   <el-menu-item v-else-if="!menuItem.hidden" :index="menuItem.name">
+    <el-icon>
+      <component :is="menuItem.icon" />
+    </el-icon>
+
     <template #title>
-      <el-icon><component :is="menuItem.icon" /></el-icon>
       <span>{{ menuItem.title }}</span>
     </template>
   </el-menu-item>

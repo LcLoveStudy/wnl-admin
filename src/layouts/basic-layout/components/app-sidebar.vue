@@ -1,7 +1,7 @@
 <template>
   <!-- Sidebar 内容 -->
   <aside
-    class="h-full tablet:relative phone:absolute bg-app-bg border-r border-layout-border transition-all ease-in-out duration-400 overflow-hidden z-50"
+    class="h-full tablet:relative phone:absolute border-r border-layout-border transition-all ease-in-out duration-400 overflow-hidden z-50"
     :style="AppSidebarStyle"
   >
     <!-- logo部分 -->

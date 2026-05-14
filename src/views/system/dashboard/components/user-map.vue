@@ -11,8 +11,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import ChinaMap from '@/assets/map/china.json'
 import * as echarts from 'echarts'
+import type { GeoJSONSourceInput } from 'echarts/types/src/coord/geo/geoTypes.js'
 
 const chartRef = ref<HTMLDivElement | null>(null)
 let chart: echarts.ECharts | null = null
@@ -97,10 +98,7 @@ const initChart = async () => {
 
   chart = echarts.init(chartRef.value)
 
-  const res = await fetch('https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json')
-  const chinaMap = await res.json()
-
-  echarts.registerMap('china', chinaMap)
+  echarts.registerMap('china', ChinaMap as unknown as GeoJSONSourceInput)
 
   chart.setOption({
     tooltip: {

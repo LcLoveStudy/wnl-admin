@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import * as echarts from 'echarts'
 import { useEchartsAutoResize } from '@/hooks'
-const chartRef = ref<HTMLDivElement | null>(null)
+const chartRef = useTemplateRef<HTMLDivElement | null>('chartRef')
 let chart: echarts.ECharts | null = null
 
 const { init, destroy } = useEchartsAutoResize(() => chart)

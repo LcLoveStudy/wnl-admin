@@ -1,7 +1,11 @@
 <template>
   <el-card shadow="hover" class="w-full overflow-hidden">
     <!-- header -->
-    <div class="mb-4 text-sm font-semibold text-gray-500 dark:text-gray-400">近30天数据趋势</div>
+    <div
+      class="mb-4 desktop:text-sm tablet:text-xl phone:text-xl font-semibold text-gray-500 dark:text-gray-400"
+    >
+      近30天数据趋势
+    </div>
 
     <div class="w-full h-72 overflow-hidden relative">
       <div ref="chartRef" class="absolute inset-0"></div>

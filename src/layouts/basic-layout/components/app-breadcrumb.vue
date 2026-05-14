@@ -1,11 +1,14 @@
 <template>
   <el-breadcrumb separator=">" :class="containerClass">
     <el-breadcrumb-item v-for="item in breadcrumb" :key="item.path" @click="breadcrumbToggle(item)">
-      <div class="flex items-center gap-2 text-base" :class="dynamicClasses(item)">
+      <div
+        class="flex items-center gap-2 desktop:text-base tablet:text-2xl phone:text-2xl"
+        :class="dynamicClasses(item)"
+      >
         <el-icon v-if="item.meta.icon">
           <component :is="item.meta.icon" />
         </el-icon>
-        <span class="text-sm">{{ item.meta.title }}</span>
+        <span>{{ item.meta.title }}</span>
       </div>
     </el-breadcrumb-item>
   </el-breadcrumb>

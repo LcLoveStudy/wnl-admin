@@ -7,7 +7,9 @@
         <div class="mb-4 flex items-center gap-2">
           <span class="h-2 w-2 rounded-full bg-primary"></span>
 
-          <div class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+          <div
+            class="desktop:text-sm tablet:text-base phone:text-base font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400"
+          >
             {{ title }}
           </div>
         </div>
@@ -22,7 +24,9 @@
         </el-statistic>
 
         <!-- 趋势 -->
-        <div class="mt-3 flex items-center text-sm text-gray-400 dark:text-gray-500">
+        <div
+          class="mt-3 flex items-center desktop:text-sm tablet:text-base phone:text-base text-gray-400 dark:text-gray-500"
+        >
           <span class="font-medium" :class="trend.startsWith('+') ? 'text-success' : 'text-danger'">
             {{ trend }}
           </span>

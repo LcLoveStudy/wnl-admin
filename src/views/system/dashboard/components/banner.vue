@@ -8,7 +8,7 @@
           <div class="text-2xl font-bold text-primary">👋 欢迎回来，{{ userinfo?.nickname }}</div>
 
           <div
-            class="flex items-center gap-1 rounded-full bg-green-100 px-2 py-1 text-xs text-green-600 dark:bg-green-500/10 dark:text-green-400"
+            class="flex items-center gap-1 rounded-full bg-green-100 px-2 py-1 desktop:text-sm tablet:text-base phone:text-base text-green-600 dark:bg-green-500/10 dark:text-green-400"
           >
             <span class="h-2 w-2 animate-pulse rounded-full bg-green-500"></span>
             Online
@@ -16,7 +16,9 @@
         </div>
 
         <!-- 状态信息 -->
-        <div class="flex items-center gap-6 text-sm text-gray-400 dark:text-gray-500">
+        <div
+          class="flex items-center gap-6 desktop:text-sm tablet:text-xl phone:text-xl text-gray-400 dark:text-gray-500"
+        >
           <div class="flex items-center gap-2">
             <span class="h-2 w-2 rounded-full bg-green-500"></span>
             系统运行正常

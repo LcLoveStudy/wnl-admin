@@ -1,6 +1,8 @@
 <template>
   <el-card shadow="hover">
-    <div class="mb-4 text-sm font-semibold text-gray-500 dark:text-gray-400">
+    <div
+      class="mb-4 desktop:text-sm tablet:text-xl phone:text-xl font-semibold text-gray-500 dark:text-gray-400"
+    >
       用户 / 订单增长趋势
     </div>
 

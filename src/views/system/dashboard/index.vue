@@ -3,7 +3,7 @@
     <!-- 用户信息 -->
     <banner />
     <!-- 数量展示 -->
-    <div class="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4 mt-4">
+    <div class="grid grid-cols-1 gap-5 tablet:grid-cols-2 desktop:grid-cols-4 mt-4">
       <StatsCard v-for="item in statistics" :key="item.title" v-bind="item" />
     </div>
 
@@ -14,15 +14,15 @@
     <!-- 3️⃣ 图表区域 -->
     <div class="grid grid-cols-1 gap-5 tablet:grid-cols-12 mt-4">
       <!-- 用户分布 -->
-      <div class="tablet:col-span-4">
+      <div class="desktop:col-span-4 tablet:col-span-12">
         <user-map />
       </div>
 
       <!-- 饼图 -->
-      <div class="tablet:col-span-4">
+      <div class="desktop:col-span-4 tablet:col-span-12">
         <pie-chart />
       </div>
-      <div class="tablet:col-span-4">
+      <div class="desktop:col-span-4 tablet:col-span-12">
         <growth-chart />
       </div>
     </div>

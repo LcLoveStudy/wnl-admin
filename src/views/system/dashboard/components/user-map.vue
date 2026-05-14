@@ -1,7 +1,11 @@
 <template>
   <el-card shadow="hover">
     <div class="mb-4 flex items-center justify-between">
-      <div class="text-sm font-semibold text-gray-500 dark:text-gray-400">用户分布（全国）</div>
+      <div
+        class="desktop:text-sm tablet:text-xl phone:text-xl font-semibold text-gray-500 dark:text-gray-400"
+      >
+        用户分布（全国）
+      </div>
     </div>
 
     <div class="w-full h-72 overflow-hidden relative">

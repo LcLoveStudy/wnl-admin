@@ -22,13 +22,15 @@
       <div class="tablet:col-span-4">
         <pie-chart />
       </div>
-      <div class="tablet:col-span-4"></div>
+      <div class="tablet:col-span-4">
+        <growth-chart />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Banner, StatsCard, TrendChart, PieChart, UserMap } from './components'
+import { Banner, StatsCard, TrendChart, PieChart, UserMap, GrowthChart } from './components'
 const statistics = [
   {
     title: '总访问量',

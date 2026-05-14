@@ -1,19 +1,34 @@
 import type { DirectiveObject } from '.'
 
-export const clickoutside: DirectiveObject<() => void> = {
-  name: 'clickoutside',
-  method: {
-    mounted(el: HTMLUnknownElement, value) {
-      window.addEventListener('click', (e) => eventHander(value.value, el, e))
-    },
-    unmounted(el: HTMLUnknownElement, value) {
-      window.removeEventListener('click', (e) => eventHander(value.value, el, e))
-    },
-  },
+type ClickoutsideElement = HTMLElement & {
+  __clickoutside__?: EventListener
+  __clickoutside_callback__?: () => void
 }
 
-const eventHander = (callback: () => void, el: HTMLUnknownElement, e: Event) => {
-  if (!el.contains(e.target as HTMLElement)) {
-    callback()
-  }
+export const clickoutside: DirectiveObject<() => void> = {
+  name: 'clickoutside',
+
+  method: {
+    mounted(el: ClickoutsideElement, binding) {
+      el.__clickoutside_callback__ = binding.value
+
+      el.__clickoutside__ = (e: Event) => {
+        if (!el.contains(e.target as Node)) {
+          el.__clickoutside_callback__?.()
+        }
+      }
+
+      window.addEventListener('mousedown', el.__clickoutside__)
+    },
+
+    updated(el: ClickoutsideElement, binding) {
+      el.__clickoutside_callback__ = binding.value
+    },
+
+    unmounted(el: ClickoutsideElement) {
+      if (!el.__clickoutside__) return
+
+      window.removeEventListener('mousedown', el.__clickoutside__)
+    },
+  },
 }

@@ -4,18 +4,23 @@
       用户 / 订单增长趋势
     </div>
 
-    <div ref="chartRef" class="h-72 w-full"></div>
+    <div class="w-full h-72 overflow-hidden relative">
+      <div ref="chartRef" class="absolute inset-0"></div>
+    </div>
   </el-card>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
 import * as echarts from 'echarts'
+import { useEchartsAutoResize } from '@/hooks'
 
 const chartRef = ref<HTMLDivElement | null>(null)
 let chart: echarts.ECharts | null = null
 
-const initChart = () => {
+const { init, destroy } = useEchartsAutoResize(() => chart)
+
+const initChart = async () => {
+  await nextTick()
   if (!chartRef.value) return
 
   chart = echarts.init(chartRef.value)
@@ -77,17 +82,18 @@ const initChart = () => {
       },
     ],
   })
-}
 
-const resize = () => chart?.resize()
+  // ⭐ 关键：统一 resize 管理
+  init(chartRef.value)
+}
 
 onMounted(() => {
   initChart()
-  window.addEventListener('resize', resize)
 })
 
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', resize)
+  destroy()
   chart?.dispose()
+  chart = null
 })
 </script>

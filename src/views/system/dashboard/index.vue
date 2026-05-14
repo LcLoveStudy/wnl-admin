@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4">
+  <div class="p-4 w-full">
     <!-- 用户信息 -->
     <banner />
     <!-- 数量展示 -->
@@ -8,7 +8,7 @@
     </div>
 
     <!-- 趋势图（主图）  -->
-    <div class="mt-4">
+    <div class="mt-4 w-full overflow-hidden min-w-0">
       <trend-chart />
     </div>
     <!-- 3️⃣ 图表区域 -->

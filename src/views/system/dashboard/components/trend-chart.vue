@@ -1,18 +1,21 @@
 <template>
-  <el-card shadow="hover">
+  <el-card shadow="hover" class="w-full overflow-hidden">
     <!-- header -->
     <div class="mb-4 text-sm font-semibold text-gray-500 dark:text-gray-400">近30天数据趋势</div>
 
-    <!-- chart -->
-    <div ref="chartRef" class="h-72 w-full"></div>
+    <div class="w-full h-72 overflow-hidden relative">
+      <div ref="chartRef" class="absolute inset-0"></div>
+    </div>
   </el-card>
 </template>
 
 <script setup lang="ts">
 import * as echarts from 'echarts'
-
+import { useEchartsAutoResize } from '@/hooks'
 const chartRef = ref<HTMLDivElement | null>(null)
 let chart: echarts.ECharts | null = null
+
+const { init, destroy } = useEchartsAutoResize(() => chart)
 
 const initChart = () => {
   if (!chartRef.value) return
@@ -111,19 +114,14 @@ const initChart = () => {
       },
     ],
   })
+  init(chartRef.value) // ⭐关键：此时才有 DOM
 }
 
 onMounted(() => {
   initChart()
-  window.addEventListener('resize', resize)
 })
 
-const resize = () => {
-  chart?.resize()
-}
-
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', resize)
-  chart?.dispose()
+  destroy()
 })
 </script>

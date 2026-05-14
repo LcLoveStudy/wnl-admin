@@ -1,20 +1,24 @@
 <template>
   <el-card shadow="hover">
-    <!-- header -->
     <div class="mb-4 text-sm font-semibold text-gray-500 dark:text-gray-400">数据分类占比</div>
 
-    <!-- chart -->
-    <div ref="chartRef" class="h-72 w-full"></div>
+    <div class="w-full h-72 overflow-hidden relative">
+      <div ref="chartRef" class="absolute inset-0"></div>
+    </div>
   </el-card>
 </template>
 
 <script setup lang="ts">
 import * as echarts from 'echarts'
+import { useEchartsAutoResize } from '@/hooks'
 
 const chartRef = ref<HTMLDivElement | null>(null)
 let chart: echarts.ECharts | null = null
 
-const initChart = () => {
+const { init, destroy } = useEchartsAutoResize(() => chart)
+
+const initChart = async () => {
+  await nextTick()
   if (!chartRef.value) return
 
   chart = echarts.init(chartRef.value)
@@ -24,16 +28,12 @@ const initChart = () => {
       trigger: 'item',
       backgroundColor: 'rgba(17, 24, 39, 0.9)',
       borderWidth: 0,
-      textStyle: {
-        color: '#fff',
-      },
+      textStyle: { color: '#fff' },
     },
 
     legend: {
       bottom: 0,
-      textStyle: {
-        color: '#9ca3af',
-      },
+      textStyle: { color: '#9ca3af' },
     },
 
     series: [
@@ -41,7 +41,7 @@ const initChart = () => {
         name: '数据占比',
         type: 'pie',
         center: ['50%', '40%'],
-        radius: ['45%', '70%'], // 👉 环形图（更高级）
+        radius: ['45%', '70%'],
 
         avoidLabelOverlap: false,
 
@@ -51,9 +51,7 @@ const initChart = () => {
           borderWidth: 1,
         },
 
-        label: {
-          show: false,
-        },
+        label: { show: false },
 
         emphasis: {
           label: {
@@ -63,14 +61,12 @@ const initChart = () => {
             color: '#111827',
           },
           itemStyle: {
-            borderColor: 'rgba(59,130,246,0.4)', // 只在 hover 出现品牌色
+            borderColor: 'rgba(59,130,246,0.4)',
             borderWidth: 2,
           },
         },
 
-        labelLine: {
-          show: false,
-        },
+        labelLine: { show: false },
 
         data: [
           { value: 1048, name: '访问' },
@@ -83,19 +79,18 @@ const initChart = () => {
       },
     ],
   })
+
+  // ⭐ 关键：初始化后交给统一 hook 管理 resize
+  init(chartRef.value)
 }
 
 onMounted(() => {
   initChart()
-  window.addEventListener('resize', resize)
 })
 
-const resize = () => {
-  chart?.resize()
-}
-
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', resize)
+  destroy()
   chart?.dispose()
+  chart = null
 })
 </script>

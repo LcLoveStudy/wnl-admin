@@ -7,6 +7,7 @@ import type {
 } from 'axios'
 import { ElMessage } from 'element-plus'
 import { LocalStorageKeys } from '@/enums/localstorage'
+import { ConstEnums } from '@/enums/const-enums'
 
 // 统一的返回接口规范
 export interface Result<T = unknown> {
@@ -24,7 +25,8 @@ const service: AxiosInstance = axios.create({
 service.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     // 统一携带 Token
-    const token = localStorage.getItem(LocalStorageKeys.TOKEN + '-wnl-admin')
+    const tokenKey = `${LocalStorageKeys.TOKEN}-${ConstEnums.PROJECT_NAME}`
+    const token = localStorage.getItem(tokenKey)
     if (token) {
       // 因为 useLocalStorage 会通过 JSON.stringify 存储，所以字符串会带双引号，这里需要 parse 一下
       config.headers['Authorization'] = `Bearer ${JSON.parse(token)}`

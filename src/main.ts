@@ -13,11 +13,11 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import { useRoutesStore } from './stores'
 import setupDirectives from '@/directive'
 
-// 生产环境自动注入 mock 数据，使得 github pages 可以拦截请求
+// 开发环境：Vite 会通过中间件拦截
+// 生产环境：如果是打包到 GitHub Pages 等纯静态托管，这里我们为了演示强行同步注入 Mock
+import { setupProdMockServer } from '../mock/mockProdServer'
 if (import.meta.env.PROD) {
-  import('../mock/mockProdServer').then(({ setupProdMockServer }) => {
-    setupProdMockServer()
-  })
+  setupProdMockServer()
 }
 
 setRootFontSize({

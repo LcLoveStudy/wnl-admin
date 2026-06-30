@@ -8,33 +8,36 @@ import AutoImport from 'unplugin-auto-import/vite'
 import { viteMockServe } from 'vite-plugin-mock'
 
 // https://vite.dev/config/
-export default defineConfig({
-  base: '/wnl-admin/',
-  server: {
-    port: 1112,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:1112', // 或者你的实际后端地址
-        changeOrigin: true,
+export default defineConfig(({ command }) => {
+  return {
+    base: '/wnl-admin/',
+    server: {
+      port: 1112,
+      proxy: {
+        '/api': {
+          target: 'http://localhost:1112', // 或者你的实际后端地址
+          changeOrigin: true,
+        },
       },
     },
-  },
-  plugins: [
-    vue(),
-    vueDevTools(),
-    tailwindcss(), // 自动引入依赖
-    AutoImport({
-      imports: ['vue', 'vue-router'],
-      dts: './src/auto-imports.d.ts',
-    }),
-    viteMockServe({
-      mockPath: 'mock',
-      enable: true,
-    }),
-  ],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    plugins: [
+      vue(),
+      vueDevTools(),
+      tailwindcss(), // 自动引入依赖
+      AutoImport({
+        imports: ['vue', 'vue-router'],
+        dts: './src/auto-imports.d.ts',
+      }),
+      viteMockServe({
+        mockPath: 'mock',
+        enable: true,
+        // vite-plugin-mock v3.0 之后去掉了 injectCode，需要自己处理生产环境打包注入
+      }),
+    ],
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
+      },
     },
-  },
+  }
 })

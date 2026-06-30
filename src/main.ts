@@ -14,6 +14,13 @@ import { dynamicRoutes } from './router/config/dynamicRoutes'
 import { useRoutesStore } from './stores'
 import setupDirectives from '@/directive'
 
+// 生产环境自动注入 mock 数据，使得 github pages 可以拦截请求
+if (import.meta.env.PROD) {
+  import('../mock/mockProdServer').then(({ setupProdMockServer }) => {
+    setupProdMockServer()
+  })
+}
+
 setRootFontSize({
   designWidth: 1920,
   baseFontSize: 16,

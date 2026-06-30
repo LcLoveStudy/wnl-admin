@@ -69,7 +69,7 @@ const rules = reactive<FormRules>({
   password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
   status: [
     {
-      validator: (_rule: any, value: any, callback: any) => {
+      validator: (_rule: unknown, value: boolean, callback: (error?: Error) => void) => {
         if (!value) {
           callback(new Error('请拖动滑块验证'))
         } else {
@@ -88,13 +88,11 @@ const loginHandler = () => {
       const { username, password } = loginForm
       loginLoading.value = true
       setTimeout(async () => {
-        await login({ username, password })
-          .then(() => {
-            router.push('/')
-          })
-          .finally(() => {
-            loginLoading.value = false
-          })
+        const success = await login({ username, password })
+        if (success) {
+          router.push('/')
+        }
+        loginLoading.value = false
       }, 1000)
     }
   })

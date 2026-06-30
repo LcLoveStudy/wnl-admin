@@ -5,7 +5,6 @@ import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import tailwindcss from '@tailwindcss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
-import { viteMockServe } from 'vite-plugin-mock'
 
 // https://vite.dev/config/
 export default defineConfig(({ command }) => {
@@ -27,11 +26,6 @@ export default defineConfig(({ command }) => {
       AutoImport({
         imports: ['vue', 'vue-router'],
         dts: './src/auto-imports.d.ts',
-      }),
-      viteMockServe({
-        mockPath: 'mock',
-        enable: true,
-        // vite-plugin-mock v3.0 之后去掉了 injectCode，需要自己处理生产环境打包注入
       }),
     ],
     resolve: {

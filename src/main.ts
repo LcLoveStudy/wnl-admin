@@ -13,13 +13,6 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import { useRoutesStore } from './stores'
 import setupDirectives from '@/directive'
 
-// 开发环境：Vite 会通过中间件拦截
-// 生产环境：如果是打包到 GitHub Pages 等纯静态托管，这里我们为了演示强行同步注入 Mock
-import { setupProdMockServer } from '../mock/mockProdServer'
-if (import.meta.env.PROD) {
-  setupProdMockServer()
-}
-
 setRootFontSize({
   designWidth: 1920,
   baseFontSize: 16,

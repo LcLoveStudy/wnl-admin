@@ -41,6 +41,16 @@ export const rootRoute: RouteConfig = {
     requiresAuth: true,
   },
   children: [
+    {
+      name: 'Redirect',
+      path: '/redirect/:path(.*)',
+      component: () => import('@/views/system/redirect/index.vue'),
+      meta: {
+        title: '重定向',
+        requiresAuth: true,
+        hidden: true,
+      },
+    },
     // 错误页面路由
     ...errorRoutes,
   ], // 动态路由会添加到这里

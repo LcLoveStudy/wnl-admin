@@ -118,7 +118,7 @@ const refreshSelectedTab = () => {
   // TODO: 如果有 keep-alive 控制，可以在这里清理缓存并重载。简单实现先通过 router.replace 刷新当前
   const { name, cacheKey } = selectedTab.value
   const { params, query } = parseCacheKey(cacheKey) || {}
-  router.replace({ name: 'Redirect', params: { path: route.fullPath } }).catch(() => {
+  router.replace({ path: '/redirect' + route.fullPath }).catch(() => {
     // 如果没有 Redirect 页面，临时方案：跳转同一个带个时间戳的 query 或者直接重载
     router.replace({ name, params, query: { ...query, _t: Date.now() } })
   })

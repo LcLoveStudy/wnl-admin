@@ -16,7 +16,7 @@ export const setupRouterGuards = (router: Router) => {
 /** 处理tab */
 export const setupTabGuards = (router: Router) => {
   router.afterEach((to) => {
-    if (to.path === '/login') return
+    if (to.path === '/login' || to.name === 'Redirect') return
     const { visitedViews } = storeToRefs(useRoutesStore())
     const cacheKey = generateCacheKey(String(to.name), to.params, to.query)
     const exists = visitedViews.value.some((v) => v.cacheKey === cacheKey)

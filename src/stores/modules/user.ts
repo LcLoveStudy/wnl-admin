@@ -4,7 +4,6 @@ import { useLocalStorage } from '@/hooks'
 import type { UserInfo } from '@/types/user'
 import { ElMessage } from 'element-plus'
 import { useRoutesStore } from './routes'
-import { dynamicRoutes } from '@/router/config/dynamicRoutes'
 import { loginApi, type LoginRequestData } from '@/api/modules/user'
 
 export const useUserStore = defineStore('user', () => {
@@ -18,7 +17,7 @@ export const useUserStore = defineStore('user', () => {
       token.value = res.token
 
       const { initDynamicRoutes } = useRoutesStore()
-      initDynamicRoutes(dynamicRoutes)
+      await initDynamicRoutes()
       return true
     } catch (error) {
       return false

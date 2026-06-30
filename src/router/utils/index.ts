@@ -1,17 +1,29 @@
 import type { RouteConfig } from '@/router/types'
 
+// 将组件路径映射到具体的 Vue 组件
+const modules = import.meta.glob('@/views/**/*.vue')
+
 /** 处理路由，主要解决vue-router的类型检查 */
 export const formatRoutes = (routes: RouteConfig[]) => {
-  return routes.map((route: any) => {
-    const { meta, children } = route
+  return routes.map((route: RouteConfig) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const currentRoute = route as any
+    const { meta, children, component } = currentRoute
+
+    // 如果 component 是字符串（从后端获取的路径），转换为实际的动态导入函数
+    if (typeof component === 'string') {
+      const componentPath = `/src/views/${component}`
+      currentRoute.component = modules[componentPath] || (() => import('@/views/error/404.vue'))
+    }
+
     if (children) {
-      route.children = formatRoutes(children)
+      currentRoute.children = formatRoutes(children)
     }
     return {
-      ...route,
+      ...currentRoute,
       meta: {
         ...meta,
-        title: meta.title || route.name,
+        title: meta.title || currentRoute.name,
       },
     }
   })

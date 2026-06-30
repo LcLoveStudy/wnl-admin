@@ -10,7 +10,6 @@ import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import { setRootFontSize } from '@/utils/responsive/setRootFontSize'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-import { dynamicRoutes } from './router/config/dynamicRoutes'
 import { useRoutesStore } from './stores'
 import setupDirectives from '@/directive'
 
@@ -26,14 +25,14 @@ setRootFontSize({
   baseFontSize: 16,
 })
 
-const initApp = () => {
+const initApp = async () => {
   const app = createApp(App)
 
   app.use(createPinia())
 
   // 动态路由
   const { initDynamicRoutes } = useRoutesStore()
-  initDynamicRoutes(dynamicRoutes)
+  await initDynamicRoutes()
   app.use(router)
 
   //element-plus

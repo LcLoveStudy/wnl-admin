@@ -39,7 +39,8 @@ import { storeToRefs } from 'pinia'
 import { generateCacheKey, parseCacheKey } from '@/utils/tabs'
 import type { TabViewType } from '@/types/tabs'
 
-const { visitedViews } = storeToRefs(useRoutesStore())
+const routesStore = useRoutesStore()
+const { visitedViews } = storeToRefs(routesStore)
 const route = useRoute()
 const router = useRouter()
 const activedTabName = ref('')
@@ -115,12 +116,18 @@ watch(contextMenuVisible, (value) => {
 // 重新加载
 const refreshSelectedTab = () => {
   if (!selectedTab.value) return
-  // TODO: 如果有 keep-alive 控制，可以在这里清理缓存并重载。简单实现先通过 router.replace 刷新当前
+  // 先通知 Store 删除当前标签的 keep-alive 缓存标记
+  routesStore.delCachedView(selectedTab.value)
+
   const { name, cacheKey } = selectedTab.value
   const { params, query } = parseCacheKey(cacheKey) || {}
-  router.replace({ path: '/redirect' + route.fullPath }).catch(() => {
-    // 如果没有 Redirect 页面，临时方案：跳转同一个带个时间戳的 query 或者直接重载
-    router.replace({ name, params, query: { ...query, _t: Date.now() } })
+
+  // 等待 Vue 下一渲染周期，确保 keep-alive 实例已被销毁
+  nextTick(() => {
+    router.replace({ path: '/redirect' + route.fullPath }).catch(() => {
+      // 如果没有 Redirect 页面，临时方案：跳转同一个带个时间戳的 query 或者直接重载
+      router.replace({ name, params, query: { ...query, _t: Date.now() } })
+    })
   })
 }
 

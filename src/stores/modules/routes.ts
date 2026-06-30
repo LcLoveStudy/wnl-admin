@@ -31,5 +31,20 @@ export const useRoutesStore = defineStore('routes', () => {
 
   /** 已缓存的页面标签 */
   const visitedViews = ref<TabViewType[]>([])
-  return { dynamicRoutes, initDynamicRoutes, visitedViews }
+
+  /** 缓存组件 name 集合 (供 keep-alive 的 include 使用) */
+  const cacheKeys = computed(() =>
+    visitedViews.value.filter((v) => v.keepAlive && v.name).map((v) => v.name as string),
+  )
+
+  /** 删除某个页面的缓存 */
+  const delCachedView = (view: TabViewType) => {
+    const index = visitedViews.value.findIndex((v) => v.cacheKey === view.cacheKey)
+    if (index > -1 && visitedViews.value[index]) {
+      // 通过将 keepAlive 临时设为 false，可以促使 keep-alive 组件释放该实例
+      visitedViews.value[index]!.keepAlive = false
+    }
+  }
+
+  return { dynamicRoutes, initDynamicRoutes, visitedViews, cacheKeys, delCachedView }
 })

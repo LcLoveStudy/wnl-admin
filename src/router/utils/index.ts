@@ -28,3 +28,38 @@ export const formatRoutes = (routes: RouteConfig[]) => {
     }
   })
 }
+
+const normalizeChildPath = (parentPath: string, childPath: string) => {
+  if (childPath.startsWith('/')) return childPath.replace(/\/+/g, '/')
+  const child = childPath.replace(/^\//, '')
+  if (!parentPath || parentPath === '/') return `/${child}`.replace(/\/+/g, '/')
+  const parent = parentPath.replace(/\/$/, '')
+  return `${parent}/${child}`.replace(/\/+/g, '/')
+}
+
+const flattenRoutesToRoot = (routes: RouteConfig[], parentFullPath = ''): RouteConfig[] => {
+  return routes.flatMap((route) => {
+    const fullPath = normalizeChildPath(parentFullPath, route.path)
+    const meta = {
+      ...route.meta,
+      parentPath:
+        route.meta?.parentPath ??
+        (parentFullPath && parentFullPath !== '/' ? parentFullPath : undefined),
+    }
+
+    const flatSelf: RouteConfig = {
+      ...route,
+      path: fullPath,
+      meta,
+    }
+    delete (flatSelf as Partial<RouteConfig>).children
+
+    const children = route.children ? flattenRoutesToRoot(route.children, fullPath) : []
+    return [flatSelf, ...children]
+  })
+}
+
+export const formatRoutesToRoot = (routes: RouteConfig[]) => {
+  const formattedTree = formatRoutes(routes)
+  return flattenRoutesToRoot(formattedTree)
+}

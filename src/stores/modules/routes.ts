@@ -1,10 +1,11 @@
 import router from '@/router'
 import type { RouteConfig } from '@/router/types'
 import type { TabViewType } from '@/types/tabs'
-import { formatRoutes } from '@/router/utils'
+import { formatRoutesToRoot } from '@/router/utils'
 import { defineStore } from 'pinia'
 import { useUserStore } from './user'
 import { getRoutesApi } from '@/api/modules/routes'
+import type { RouteRecordRaw } from 'vue-router'
 
 export const useRoutesStore = defineStore('routes', () => {
   const dynamicRoutes = ref<RouteConfig[]>([])
@@ -17,9 +18,9 @@ export const useRoutesStore = defineStore('routes', () => {
 
     try {
       const routes = await getRoutesApi()
-      const formattedRoutes = formatRoutes(routes)
+      const formattedRoutes = formatRoutesToRoot(routes)
       formattedRoutes.forEach((route) => {
-        router.addRoute('Root', route)
+        router.addRoute('Root', route as unknown as RouteRecordRaw)
       })
       dynamicRoutes.value = routes
       return true

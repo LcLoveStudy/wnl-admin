@@ -1,6 +1,7 @@
 export { default as Banner } from './banner.vue'
 export { default as StatsCard } from './stats-card.vue'
 export { default as TrendChart } from './trend-chart.vue'
+export { default as BarChart } from './bar-chart.vue'
 export { default as PieChart } from './pie-chart.vue'
 export { default as UserMap } from './user-map.vue'
 export { default as GrowthChart } from './growth-chart.vue'

@@ -9,7 +9,6 @@ import type { RouteRecordRaw } from 'vue-router'
 
 export const useRoutesStore = defineStore('routes', () => {
   const dynamicRoutes = ref<RouteConfig[]>([])
-
   /** 从后端获取路由并初始化注册 */
   const initDynamicRoutes = async () => {
     dynamicRoutes.value = []

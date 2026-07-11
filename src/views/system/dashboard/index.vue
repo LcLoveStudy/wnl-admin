@@ -8,8 +8,9 @@
     </div>
 
     <!-- 趋势图（主图）  -->
-    <div class="mt-4 w-full overflow-hidden min-w-0">
+    <div class="mt-4 grid grid-cols-1 gap-5 desktop:grid-cols-2 w-full min-w-0">
       <trend-chart />
+      <bar-chart />
     </div>
     <!-- 3️⃣ 图表区域 -->
     <div class="grid grid-cols-1 gap-5 tablet:grid-cols-12 mt-4">
@@ -30,7 +31,15 @@
 </template>
 
 <script setup lang="ts">
-import { Banner, StatsCard, TrendChart, PieChart, UserMap, GrowthChart } from './components'
+import {
+  Banner,
+  StatsCard,
+  TrendChart,
+  BarChart,
+  PieChart,
+  UserMap,
+  GrowthChart,
+} from './components'
 const statistics = [
   {
     title: '总访问量',
